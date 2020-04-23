@@ -6,4 +6,9 @@ public class DummyDesignTest {
         DummyDesign unDummy = new DummyDesign();
         Assert.assertEquals(unDummy.integrante2(),2);
     }
+    @Test
+    public void testIntegrante3(){
+        DummyDesign unDummy = new DummyDesign();
+        Assert.assertEquals(unDummy.integrante3(),3);
+    }
 }
