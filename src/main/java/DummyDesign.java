@@ -5,7 +5,10 @@ public class DummyDesign {
         ENRIQUE,
         MALLET,
         ROCCA,
-        ROLON;
+        ROLON
+    }
+    public static int integrante1(){
+        return 1;
     }
     public static int integrante2(){
         return 2;
