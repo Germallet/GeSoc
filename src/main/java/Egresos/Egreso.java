@@ -25,7 +25,7 @@ public class Egreso {
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
-    void validarAtributos(Proveedor unProveedor, String fecha, MedioDePago unPago, List unosItems){
+    void validarAtributos(Proveedor unProveedor, String fecha, MedioDePago unPago, List<Item>unosItems){
         validarNoNulo(unProveedor);
         validarNoNulo(fecha);
         validarNoNulo(unPago);
