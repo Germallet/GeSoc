@@ -24,7 +24,6 @@ public class Egreso {
     int valorTotal(){
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
-}
 
     void validarAtributos(Proveedor unProveedor, String fecha, MedioDePago unPago, List unosItems){
         validarNoNulo(unProveedor);
@@ -39,3 +38,4 @@ public class Egreso {
             throw new NuloException("alguno de los campos es nulo");
         }
     }
+}

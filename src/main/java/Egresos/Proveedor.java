@@ -1,15 +1,14 @@
 package Egresos;
 
+// habria que evaluar que si cuando en el enunciado hablar de proveedor o prestador de servicios se refiere a dos tipos de destinatarios de mis egresos
 
 public class Proveedor {
     String nombre;
-    String razonSocial;
     int dni;
     String direccionPostal;
 
-    Proveedor(String nombre, String razon, int dni, String direccion){
+    Proveedor(String nombre, int dni, String direccion){
         this.nombre = nombre;
-        this.razonSocial = razon;
         this.dni = dni;
         this.direccionPostal = direccion;
     }
