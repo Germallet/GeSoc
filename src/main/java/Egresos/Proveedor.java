@@ -1,5 +1,6 @@
 package Egresos;
 
+
 public class Proveedor {
     String nombre;
     String razonSocial;

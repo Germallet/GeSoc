@@ -22,6 +22,6 @@ public class Egreso {
     }
 
     float valorTotal(){
-        return items.stream().mapToInt(unItem -> unItem.valor()).sum();
+        return items.stream().mapToInt(unItem -> unItem.valor()).sum(); // ESTE METODO NO COMPILAA (no entendemos por que)
     }
 }

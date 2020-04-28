@@ -1,7 +1,9 @@
 package Egresos;
 
+// depende de lo que venga en las proximas entregas podria cambiarse a una herencia de la clase Pago en vez de una interface
+
 public interface Pago {
-    int datoIdentificador;
+
 }
 
 class TarjetaCredito implements Pago{
