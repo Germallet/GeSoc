@@ -1,7 +1,5 @@
 package Organizaciones;
 
-
-
 public interface Entidad {
 }
 
