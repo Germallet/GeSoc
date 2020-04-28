@@ -1,6 +1,6 @@
 package Organizaciones;
 
-// fa
+
 
 public interface Entidad {
 }
@@ -33,5 +33,5 @@ class Base implements Entidad{
     String nombreFicticio;
     String descripcion;
 
-    // quizas faltaria agregar si la entidad base tiene que conocer a su entidad juridida
+    // quizas faltaria agregar si la entidad base tiene que conocer a su entidad juridica
 }
