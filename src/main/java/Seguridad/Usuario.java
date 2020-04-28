@@ -7,7 +7,7 @@ import java.security.spec.InvalidKeySpecException;
 
 public class Usuario {
     TipoDeUsuario tipo;
-    String nombre;
+    String usuario;
     Contrasenia contrasenia;
 
     public Usuario(TipoDeUsuario tipo, String nombre, String contrasenia) throws InvalidKeySpecException, NoSuchAlgorithmException {
