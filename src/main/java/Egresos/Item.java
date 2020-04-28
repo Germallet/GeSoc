@@ -8,7 +8,7 @@ public class Item {
         return this.valor;
     }
 }
-
+// se utiliza herencia y no composicion porque no interesa que se transformen
 class Producto extends Item{
 }
 
