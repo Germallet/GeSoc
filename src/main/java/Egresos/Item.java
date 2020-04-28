@@ -1,12 +1,10 @@
 package Egresos;
 
-import java.util.ArrayList;
-
 public class Item {
     String descripcion;
-    float valor;
+    int valor;
 
-    public float valor() {
+    public int valor() {
         return this.valor;
     }
 }

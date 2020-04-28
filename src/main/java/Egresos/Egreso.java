@@ -5,14 +5,14 @@ public class Egreso {
     DocumentoComercial documento;
     Proveedor proveedor;
     String fecha;
-    Pago pago;
-    float valorTotal;
+    MedioDePago medioDePago;
     List<Item> items;
 
-    Egreso(Proveedor unProveedor, String fecha, Pago unPago, List<Item> unosItems) {
+    Egreso(Proveedor unProveedor, String fecha, MedioDePago unPago, List<Item> unosItems) {
+        validarAtributos(unProveedor, fecha, unPago, unosItems);
         this.fecha = fecha;
         this.proveedor = unProveedor;
-        this.pago = unPago;
+        this.medioDePago = unPago;
         this.items = unosItems;
     }
 
@@ -21,7 +21,21 @@ public class Egreso {
         documento = unDocumento;
     }
 
-    float valorTotal(){
-        return items.stream().mapToInt(unItem -> unItem.valor()).sum(); // ESTE METODO NO COMPILAA (no entendemos por que)
+    int valorTotal(){
+        return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 }
+
+    void validarAtributos(Proveedor unProveedor, String fecha, MedioDePago unPago, List unosItems){
+        validarNoNulo(unProveedor);
+        validarNoNulo(fecha);
+        validarNoNulo(unPago);
+        validarNoNulo(unosItems);
+    }
+
+    // este metodo me tira un error en la comparacion con null y no entiendo por que
+    void validarNoNulo(Object unAtributo){
+        if(unAtributo.equals(null)){
+            throw new NuloException("alguno de los campos es nulo");
+        }
+    }
