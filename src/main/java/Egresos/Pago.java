@@ -1,7 +1,7 @@
 package Egresos;
 
 public interface Pago {
-
+    int datoIdentificador;
 }
 
 class TarjetaCredito implements Pago{
@@ -16,11 +16,11 @@ class Efectivo implements Pago{
 
 }
 
-class DineroEnCuenta implements Pago{
+class CajeroAutomatico implements Pago{
 
 }
 
-class CajeroAutomatico implements Pago{
+class DineroEnCuenta implements Pago{
 
 }
 
