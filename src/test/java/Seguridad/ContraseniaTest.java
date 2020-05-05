@@ -24,7 +24,12 @@ public class ContraseniaTest {
     }
 
     @Test
-    public void NoPuedeMedirMenosQue8() throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void NoPuedeMedirMenosQue8() {
         Assert.assertThrows(IllegalArgumentException.class, () -> new Contrasenia("Corta"));
+    }
+
+    @Test
+    public void NoPuedeSerComún() {
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Contrasenia("12345678"));
     }
 }

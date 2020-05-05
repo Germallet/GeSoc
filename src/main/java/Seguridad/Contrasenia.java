@@ -27,8 +27,8 @@ public class Contrasenia {
         return Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia);
     }
     private boolean EsComún(String contrasenia) {
-        // TODO
-        return false;
+        Diccionario diezMilMásComunes = new Diccionario("10k-most-common.txt");
+        return diezMilMásComunes.Contiene(contrasenia);
     }
 
     public boolean EsIgualA(String contraseniaCandidata) throws NoSuchAlgorithmException, InvalidKeySpecException {
