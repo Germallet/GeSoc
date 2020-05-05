@@ -10,12 +10,12 @@ public class ContraseniaTest {
 
     @Before
     public void InicializarTest() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        contrasenia = new Contrasenia("ContraseniaValida");
+        contrasenia = new Contrasenia("ContraseniaVálida$");
     }
 
     @Test
     public void ContraseniasDeMismoTextoSonIguales() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        Assert.assertTrue(contrasenia.EsIgualA("ContraseniaValida"));
+        Assert.assertTrue(contrasenia.EsIgualA("ContraseniaVálida$"));
     }
 
     @Test
