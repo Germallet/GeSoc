@@ -13,21 +13,18 @@ public class EntidadesTest {
     Juridica entidadJuridicaDistinta;
 
     @Before
-
     public void inicializarTest() {
-       entidadJuridica = new Juridica("Mc Donalds S.A", "Mc Donalds", 2010133789, 1431, new OSC());
-       entidadJuridicaDistinta =new Juridica("Burger King S.A", "Burger King", 2055133789, 1481, new OSC());
-       entidadBase= new Base("Base","Es una entidad base");
+        entidadJuridica = new Juridica("Mc Donalds S.A", "Mc Donalds", 2010133789, 1431, new OSC());
+        entidadJuridicaDistinta = new Juridica("Burger King S.A", "Burger King", 2055133789, 1481, new OSC());
+        entidadBase = new Base("Base", "Es una entidad base");
 
     }
 
-   /* @Test
-
-    public void unaEntidadBaseNoPuedePertenecerAMasDeUnaJuridica(){
+    @Test
+    public void unaEntidadBaseNoPuedePertenecerAMasDeUnaJuridica() {
         entidadJuridica.setEntidadBase(entidadBase);
         entidadBase.setEntidadJuridica(entidadJuridica);
-        Assert.assertThrows(EntidadBaseException.class, entidadJuridicaDistinta.setEntidadBase(entidadBase));
-    }*/
-   // HAY QUE VERIFICAR QUE AL INTENTAR AGREGAR UNA MISMA ENTIDAD BASE A 2 JURIDICAS DISTINTAS, TIRE EXCEPCION
+        Assert.assertThrows(EntidadBaseException.class, () -> entidadJuridicaDistinta.setEntidadBase(entidadBase));
+    }
 }
 
