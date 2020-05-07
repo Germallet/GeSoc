@@ -28,10 +28,10 @@ public class Contrasenia {
     }
     private boolean esComun(String contrasenia) {
         Diccionario diezMilMasComunes = new Diccionario("10k-most-common.txt");
-        return diezMilMasComunes.Contiene(contrasenia);
+        return diezMilMasComunes.contiene(contrasenia);
     }
 
     public boolean esIgualA(String contraseniaCandidata) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        return new Hash(contraseniaCandidata, salt).EsIgualA(hash);
+        return new Hash(contraseniaCandidata, salt).esIgualA(hash);
     }
 }
