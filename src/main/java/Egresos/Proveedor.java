@@ -2,6 +2,8 @@ package Egresos;
 
 // habria que evaluar que si cuando en el enunciado hablar de proveedor o prestador de servicios se refiere a dos tipos de destinatarios de mis egresos
 
+import com.google.common.base.Preconditions;
+
 import java.util.List;
 
 public class Proveedor {
@@ -17,12 +19,9 @@ public class Proveedor {
 
     //no se si esta bien agregar asi o seria duplicated code
     void validarCaracteristicas(String nombre, int dni, String direccionPostal){
-       validarNoNulo(nombre);
-        validarNoNulo(dni);
-        validarNoNulo(direccionPostal);
+        Preconditions.checkNotNull(nombre, "No se ingreso un nombre");
+        Preconditions.checkNotNull(dni, "No se ingreso una dni");
+        Preconditions.checkNotNull(direccionPostal, "No se ingreso una direccion");
     }
-    void validarNoNulo(Object unAtributo){
-        if(unAtributo.equals(null)){
-            throw new NuloException("alguno de los campos es nulo");
-        }
-}}
+
+}
