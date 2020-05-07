@@ -13,7 +13,7 @@ public class Diccionario {
     public boolean contiene(String busqueda) {
         Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(nombreArchivo));
         while (scanner.hasNextLine())
-            if (scanner.nextLine().equals(busqueda))
+            if (scanner.nextLine().equalsIgnoreCase(busqueda))
                 return true;
         return false;
     }
