@@ -10,10 +10,10 @@ public class Diccionario {
         this.nombreArchivo = nombreArchivo;
     }
 
-    public boolean Contiene(String búsqueda) {
+    public boolean contiene(String busqueda) {
         Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(nombreArchivo));
         while (scanner.hasNextLine())
-            if (scanner.nextLine().equals(búsqueda))
+            if (scanner.nextLine().equals(busqueda))
                 return true;
         return false;
     }

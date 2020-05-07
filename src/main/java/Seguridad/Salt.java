@@ -11,7 +11,7 @@ public class Salt {
         new SecureRandom().nextBytes(bytes);
     }
 
-    public byte[] ObtenerBytes() {
+    public byte[] obtenerBytes() {
         return bytes;
     }
 }
