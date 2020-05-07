@@ -7,12 +7,13 @@ import java.security.spec.InvalidKeySpecException;
 
 public class Usuario {
     TipoDeUsuario tipo;
-    String usuario;
+    String nombre;
     Contrasenia contrasenia;
 
     public Usuario(TipoDeUsuario tipo, String nombre, String contrasenia) throws InvalidKeySpecException, NoSuchAlgorithmException {
         Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacío"));
         this.tipo = tipo;
+        this.nombre = nombre;
         this.contrasenia = new Contrasenia(contrasenia);
     }
 }
