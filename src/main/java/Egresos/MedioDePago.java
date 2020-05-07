@@ -3,15 +3,22 @@ package Egresos;
 // quizas nos conviene que MedioDePago sea una clase para poder settear el numero identificador
 //se descarta utilizar herencia porque supongo que puede haber mas de un metodo d pago
 interface MedioDePago {
-
 }
 
 class TarjetaCredito implements MedioDePago{
+    int id;
 
+    TarjetaCredito(int id){
+        this.id = id;
+    }
 }
 
 class TarjetaDebito implements MedioDePago{
+    int id;
 
+    TarjetaDebito(int id){
+        this.id = id;
+    }
 }
 
 class Efectivo implements MedioDePago{

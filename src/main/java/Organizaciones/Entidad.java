@@ -1,5 +1,7 @@
 package Organizaciones;
 
+import static java.util.Objects.isNull;
+
 public interface Entidad {
 }
 
@@ -19,21 +21,42 @@ class Juridica implements Entidad{
         this.direccionPostal = direccionPostal;
         this.categoria = categoria;
     }
-
+     //TODO VALIDAR
     // en el enunciado se especifica como optativo
-    void setCodigoDeInscripcion(int unCodigo){
+    public void setCodigoDeInscripcion(int unCodigo){
         codigoDeInscripcion = unCodigo;
     }
 
-    void setEntidadBase(Base unaEntidad){
+    public void setEntidadBase(Base unaEntidad){
+        validarDisponibilidadDeEntidad(unaEntidad);
         entidadBase = unaEntidad;
+    }
+
+    private void validarDisponibilidadDeEntidad(Base unaEntidad) {
+        if(unaEntidad.perteneceAUnaJuridica()){
+            throw new EntidadBaseException("la entidad base ya pertenece a una juridica");
+        }
     }
 }
 
 class Base implements Entidad{
     String nombreFicticio;
     String descripcion;
+    Juridica entidadJuridica; // a la que pertenece
 
-    // quizas faltaria agregar si la entidad base tiene que conocer a su entidad juridica o encontrar
-    // una forma de restringir que solo pueda pertenecer a una
+    Base(String nombreFicticio, String descripcion){
+        this.nombreFicticio=nombreFicticio;
+        this.descripcion=descripcion;
+
+    }
+
+    public void setEntidadJuridica(Juridica entidadJuridica){
+        this.entidadJuridica=entidadJuridica;
+    }
+    public boolean perteneceAUnaJuridica(){
+        return !isNull(entidadJuridica);
+    }
 }
+
+// agregamos como atributo a la entidad juridica a la que pertenece para poder asegurarnos que otra no pueda
+// tenerla como base (segun el enunciado, una entidad base puede pertenecer a solo una juridica)

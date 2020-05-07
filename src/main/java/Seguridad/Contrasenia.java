@@ -12,26 +12,26 @@ public class Contrasenia {
     private Salt salt;
 
     public Contrasenia(String contrasenia) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        ValidarPrecondiciones(contrasenia);
+        validarPrecondiciones(contrasenia);
         salt = new Salt();
         hash = new Hash(contrasenia, salt);
     }
 
-    private void ValidarPrecondiciones(String contrasenia) {
+    private void validarPrecondiciones(String contrasenia) {
         Preconditions.checkArgument(contrasenia.length() >= 8, new IllegalArgumentException("Contraseña demasiado corta"));
-        Preconditions.checkArgument(TieneCaracterEspecial(contrasenia),new IllegalArgumentException("La contraseña no tiene un caracter especial"));
-        Preconditions.checkArgument(!EsComún(contrasenia), new IllegalArgumentException("Contraseña demasiado común"));
+        Preconditions.checkArgument(tieneCaracterEspecial(contrasenia),new IllegalArgumentException("La contraseña no tiene un caracter especial"));
+        Preconditions.checkArgument(!esComun(contrasenia), new IllegalArgumentException("Contraseña demasiado común"));
     }
 
-    private boolean TieneCaracterEspecial(String contrasenia){
+    private boolean tieneCaracterEspecial(String contrasenia){
         return Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia);
     }
-    private boolean EsComún(String contrasenia) {
-        Diccionario diezMilMásComunes = new Diccionario("10k-most-common.txt");
-        return diezMilMásComunes.Contiene(contrasenia);
+    private boolean esComun(String contrasenia) {
+        Diccionario diezMilMasComunes = new Diccionario("10k-most-common.txt");
+        return diezMilMasComunes.Contiene(contrasenia);
     }
 
-    public boolean EsIgualA(String contraseniaCandidata) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean esIgualA(String contraseniaCandidata) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return new Hash(contraseniaCandidata, salt).EsIgualA(hash);
     }
 }

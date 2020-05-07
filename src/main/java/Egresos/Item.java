@@ -3,16 +3,17 @@ package Egresos;
 public class Item {
     String descripcion;
     int valor;
+    TipoDeItem tipo;
+
+    Item(String descripcion, int valor, TipoDeItem tipo){
+        this.descripcion = descripcion;
+        this.valor = valor;
+        this.tipo = tipo;
+    }
 
     public int valor() {
         return this.valor;
     }
 }
-// se utiliza herencia y no composicion porque no interesa que se transformen
-class Producto extends Item{
-}
 
-class Servicio extends Item{
-}
-
-// estoy considerando que la razon del egreso puede ser la contratacion de un servicio o compra de un producto
+// use composicion porque seguramente nos interese tratar al tipo polimorficamente, igualmente deberia revisarse segun los proximos enunciados
