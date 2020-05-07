@@ -23,7 +23,7 @@ public class EgresoTest {
     public Item otroItem;
 
     @Before
-    public void InicializarTest() {
+    public void inicializarTest() {
         proveedor = new Proveedor("juan", 42698536, "almagro");
         medioDePago = new TarjetaCredito(22345);
 
