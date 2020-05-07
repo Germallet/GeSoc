@@ -11,7 +11,7 @@ public class DiccionarioTest {
     }
 
     @Test
-    public void diccionarioTestContieneContraseniaComún() {
+    public void diccionarioTestContieneContraseniaComun() {
         Assert.assertTrue(diccionarioTest.contiene("123"));
     }
 
