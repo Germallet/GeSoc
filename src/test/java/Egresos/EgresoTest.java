@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Egresos.TipoDeItem.*;
 import static org.junit.Assert.*;
 
 public class EgresoTest {
@@ -27,8 +28,8 @@ public class EgresoTest {
         proveedor = new Proveedor("juan", 42698536, "almagro");
         medioDePago = new TarjetaCredito(22345);
 
-        unItem = new Item("item1", 100, new Producto());
-        otroItem = new Item("item2", 250, new Servicio());
+        unItem = new Item("item1", 100, Producto);
+        otroItem = new Item("item2", 250, Servicio);
 
         items.add(unItem);
         items.add(otroItem);
