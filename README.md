@@ -2,7 +2,7 @@
 
 Trabajo práctico realizado para la cátedra de Diseño de Sistemas de la UTN FRBA, 2020.
 
-Integrantes :
+Integrantes Grupo 10:
  - Cecilia Rocca
  - Gabriel Bouzas
  - Germán Mallet
