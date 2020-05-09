@@ -5,12 +5,17 @@ public class Categoria{
 }
 
 class Empresa extends Categoria{
-    /*Clasificacion clasificacion;
+    Clasificacion clasificacion;
 
     Empresa(Clasificacion clasificacion){
         this.clasificacion= clasificacion;
-    } VER CRITERIOS DE LA AFIP*/
-}
+
+}}
 
 class OSC extends Categoria{
+    Clasificacion clasificacion;
+
+   OSC(Clasificacion clasificacion){
+        this.clasificacion= clasificacion;
+}
 }
