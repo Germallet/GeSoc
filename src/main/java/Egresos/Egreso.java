@@ -1,18 +1,21 @@
 package Egresos;
+import Organizaciones.Organizacion;
 import com.google.common.base.Preconditions;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class Egreso {
+    Organizacion organizacion;
     DocumentoComercial documento;
     Proveedor proveedor;
     LocalDate fecha;
     MedioDePago medioDePago;
     List<Item> items;
 
-    Egreso(Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
-        validarAtributos(unProveedor, fecha, unPago, unosItems);
+    Egreso(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
+        validarAtributos(organizacion, unProveedor, fecha, unPago, unosItems);
+        this.organizacion = organizacion;
         this.fecha = fecha;
         this.proveedor = unProveedor;
         this.medioDePago = unPago;
@@ -27,7 +30,8 @@ public class Egreso {
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
-    private void validarAtributos(Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems){
+    private void validarAtributos(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
+        Preconditions.checkNotNull(organizacion, "No se ingresó una organización");
         Preconditions.checkNotNull(unProveedor, "No se ingresó un proveedor");
         Preconditions.checkNotNull(fecha, "No se ingresó una fecha");
         Preconditions.checkNotNull(unPago, "No se ingresó un medio de pago");

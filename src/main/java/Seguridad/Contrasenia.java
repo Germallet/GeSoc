@@ -23,7 +23,7 @@ public class Contrasenia {
         Preconditions.checkArgument(!esComun(contrasenia), new IllegalArgumentException("Contraseña demasiado común"));
     }
 
-    private boolean tieneCaracterEspecial(String contrasenia){
+    private boolean tieneCaracterEspecial(String contrasenia) {
         return Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia);
     }
 

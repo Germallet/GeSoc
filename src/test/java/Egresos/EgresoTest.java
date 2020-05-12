@@ -1,5 +1,6 @@
 package Egresos;
 
+import Organizaciones.Organizacion;
 import org.junit.*;
 import java.util.*;
 import java.time.LocalDate;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 import static Egresos.TipoDeItem.*;
 
 public class EgresoTest {
+    private Organizacion organizacion;
     private Egreso egreso;
     private Proveedor proveedor;
     MedioDePago medioDePago;
@@ -17,6 +19,7 @@ public class EgresoTest {
 
     @Before
     public void inicializarTest() {
+        organizacion = new Organizacion();
         proveedor = new Proveedor("juan", 42698536, "almagro");
         medioDePago = new TarjetaCredito(22345);
 
@@ -26,7 +29,7 @@ public class EgresoTest {
         items.add(unItem);
         items.add(otroItem);
 
-        egreso = new Egreso(proveedor, LocalDate.now(),  medioDePago, items);
+        egreso = new Egreso(organizacion, proveedor, LocalDate.now(),  medioDePago, items);
     }
 
      @Test
@@ -36,6 +39,6 @@ public class EgresoTest {
 
      @Test
     public void elProveedorDelEgresoNoPuedeSerNulo() {
-         Assert.assertThrows(NullPointerException.class, () -> new Egreso(null, LocalDate.now(),  medioDePago, items ));
+         Assert.assertThrows(NullPointerException.class, () -> new Egreso(organizacion, null, LocalDate.now(),  medioDePago, items ));
     }
 }
