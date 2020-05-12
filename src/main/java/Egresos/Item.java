@@ -15,5 +15,3 @@ public class Item {
         return this.valor;
     }
 }
-
-// use composicion porque seguramente nos interese tratar al tipo polimorficamente, igualmente deberia revisarse segun los proximos enunciados

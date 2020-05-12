@@ -1,18 +1,10 @@
 package Egresos;
 
-import Seguridad.Contrasenia;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
+import org.junit.*;
+import java.util.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import static Egresos.TipoDeItem.*;
-import static org.junit.Assert.*;
 
 public class EgresoTest {
     private Egreso egreso;
@@ -42,9 +34,8 @@ public class EgresoTest {
         Assert.assertEquals(350, egreso.valorTotal());
      }
 
-     // no es necesario este test, pero queriamos saber si la validacionera correcta
      @Test
-    public void elProveedorDelEgresoNoPuedeSerNulo(){
+    public void elProveedorDelEgresoNoPuedeSerNulo() {
          Assert.assertThrows(NullPointerException.class, () -> new Egreso(null, LocalDate.now(),  medioDePago, items ));
-     }
+    }
 }

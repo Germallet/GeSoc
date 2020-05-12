@@ -11,7 +11,7 @@ public class Usuario {
     Contrasenia contrasenia;
 
     public Usuario(TipoDeUsuario tipo, String nombre, String contrasenia) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacio"));
+        Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacío"));
         this.tipo = tipo;
         this.nombre = nombre;
         this.contrasenia = new Contrasenia(contrasenia);

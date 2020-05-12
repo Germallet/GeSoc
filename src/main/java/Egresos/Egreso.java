@@ -19,7 +19,6 @@ public class Egreso {
         this.items = unosItems;
     }
 
-    // como es opcional lo agregue para que si se necesita un documento pueda agregarse de forma no obligatoria
     public void setDocumentoComercial(DocumentoComercial unDocumento){
         documento = unDocumento;
     }
@@ -28,21 +27,10 @@ public class Egreso {
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
-    public void validarAtributos(Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems){
-        Preconditions.checkNotNull(unProveedor, "No se ingreso un proveedor");
-        Preconditions.checkNotNull(fecha, "No se ingreso una fecha");
-        Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
-        Preconditions.checkNotNull(unosItems, "No se ingreso ningun item");
+    private void validarAtributos(Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems){
+        Preconditions.checkNotNull(unProveedor, "No se ingresó un proveedor");
+        Preconditions.checkNotNull(fecha, "No se ingresó una fecha");
+        Preconditions.checkNotNull(unPago, "No se ingresó un medio de pago");
+        Preconditions.checkNotNull(unosItems, "No se ingresó ningun item");
     }
-        /*validarNoNulo(unProveedor);
-        validarNoNulo(fecha);
-        validarNoNulo(unPago);
-        validarNoNulo(unosItems);
-
-
-    void validarNoNulo(Object unAtributo){
-        if(unAtributo.equals(null)){
-            throw new NuloException("alguno de los campos es nulo");
-        }
-    }*/
 }

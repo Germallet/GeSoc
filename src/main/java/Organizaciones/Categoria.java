@@ -1,21 +1,15 @@
 package Organizaciones;
 
-// utilizamos herencia porque segun interpretacion del enunciado se puede ser una sola de las categorias
-public class Categoria{
+public interface Categoria {
 }
 
-class Empresa extends Categoria{
+class Empresa implements Categoria {
     Clasificacion clasificacion;
 
-    Empresa(Clasificacion clasificacion){
-        this.clasificacion= clasificacion;
-
-}}
-
-class OSC extends Categoria{
-    Clasificacion clasificacion;
-
-   OSC(Clasificacion clasificacion){
-        this.clasificacion= clasificacion;
+    Empresa(Clasificacion clasificacion) {
+        this.clasificacion = clasificacion;
+    }
 }
+
+class OSC implements Categoria {
 }

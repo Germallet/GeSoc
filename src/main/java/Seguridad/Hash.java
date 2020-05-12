@@ -25,4 +25,3 @@ public class Hash {
         return Arrays.equals(otroHash.obtenerBytes(), obtenerBytes());
     }
 }
-

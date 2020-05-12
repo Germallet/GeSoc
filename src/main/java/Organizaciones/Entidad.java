@@ -1,6 +1,6 @@
 package Organizaciones;
 
-import static java.util.Objects.isNull;
+import com.google.common.base.Preconditions;
 
 public interface Entidad {
 }
@@ -11,52 +11,40 @@ class Juridica implements Entidad{
     int CUIT;
     int direccionPostal;
     int codigoDeInscripcion;
-    Base entidadBase;
     Categoria categoria;
 
-    Juridica(String razonSocial, String nombreFicticio, int CUIT, int direccionPostal, Categoria categoria){
+    Juridica(String razonSocial, String nombreFicticio, int CUIT, int direccionPostal, Categoria categoria) {
+        validarAtributos(razonSocial, nombreFicticio, categoria);
         this.razonSocial = razonSocial;
         this.nombreFicticio = nombreFicticio;
         this.CUIT = CUIT;
         this.direccionPostal = direccionPostal;
         this.categoria = categoria;
     }
-     //TODO VALIDAR
-    // en el enunciado se especifica como optativo
-    public void setCodigoDeInscripcion(int unCodigo){
+
+    private void validarAtributos(String razonSocial, String nombreFicticio, Categoria categoria) {
+        Preconditions.checkNotNull(razonSocial, "No se ingresó razón social");
+        Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
+        Preconditions.checkNotNull(categoria, "No se ingresó categoría");
+    }
+
+    public void setCodigoDeInscripcion(int unCodigo) {
         codigoDeInscripcion = unCodigo;
-    }
-
-    public void setEntidadBase(Base unaEntidad){
-        validarDisponibilidadDeEntidad(unaEntidad);
-        entidadBase = unaEntidad;
-    }
-
-    private void validarDisponibilidadDeEntidad(Base unaEntidad) {
-        if(unaEntidad.perteneceAUnaJuridica()){
-            throw new EntidadBaseException("la entidad base ya pertenece a una juridica");
-        }
     }
 }
 
 class Base implements Entidad{
     String nombreFicticio;
     String descripcion;
-    Juridica entidadJuridica; // a la que pertenece
+    Juridica entidadJuridica;
 
-    Base(String nombreFicticio, String descripcion){
-        this.nombreFicticio=nombreFicticio;
-        this.descripcion=descripcion;
-
+    Base(String nombreFicticio, String descripcion) {
+        Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
+        this.nombreFicticio = nombreFicticio;
+        this.descripcion = descripcion;
     }
 
-    public void setEntidadJuridica(Juridica entidadJuridica){
-        this.entidadJuridica=entidadJuridica;
-    }
-    public boolean perteneceAUnaJuridica(){
-        return !isNull(entidadJuridica);
+    public void setEntidadJuridica(Juridica entidadJuridica) {
+        this.entidadJuridica = entidadJuridica;
     }
 }
-
-// agregamos como atributo a la entidad juridica a la que pertenece para poder asegurarnos que otra no pueda
-// tenerla como base (segun el enunciado, una entidad base puede pertenecer a solo una juridica)

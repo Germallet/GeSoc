@@ -19,13 +19,14 @@ public class Contrasenia {
 
     private void validarPrecondiciones(String contrasenia) {
         Preconditions.checkArgument(contrasenia.length() >= 8, new IllegalArgumentException("Contraseña demasiado corta"));
-        Preconditions.checkArgument(tieneCaracterEspecial(contrasenia),new IllegalArgumentException("La contraseña no tiene un caracter especial"));
+        Preconditions.checkArgument(tieneCaracterEspecial(contrasenia), new IllegalArgumentException("La contraseña no tiene un caracter especial"));
         Preconditions.checkArgument(!esComun(contrasenia), new IllegalArgumentException("Contraseña demasiado común"));
     }
 
     private boolean tieneCaracterEspecial(String contrasenia){
         return Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia);
     }
+
     private boolean esComun(String contrasenia) {
         Diccionario diezMilMasComunes = new Diccionario("10k-most-common.txt");
         return diezMilMasComunes.contiene(contrasenia);
