@@ -1,32 +1,38 @@
 package Seguridad;
 
+import Seguridad.ValidadorDeContrasenia.*;
 import org.junit.*;
+import java.util.*;
 
 public class ContraseniaTest {
     private Contrasenia contrasenia;
 
     @Before
     public void inicializarTest() {
-        contrasenia = new Contrasenia("ContraseniaValida$");
+        contrasenia = new Contrasenia("ContraseniaValida", new ArrayList());
     }
 
     @Test
     public void contraseniasDeMismoTextoSonIguales() {
-        Assert.assertTrue(contrasenia.esIgualA("ContraseniaValida$"));
+        Assert.assertTrue(contrasenia.esIgualA("ContraseniaValida"));
     }
 
     @Test
     public void contaseniasDistintasNoSonIguales() {
-        Assert.assertFalse(contrasenia.esIgualA("ContraseniaIncorrecta"));
+        Assert.assertFalse(contrasenia.esIgualA("ContraseniaInvalida"));
     }
 
     @Test
-    public void noPuedeMedirMenosQue8() {
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Contrasenia("Corta"));
+    public void contraseniaCumpleMultiplesVerifidores() {
+        Collection validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
+        new Contrasenia("ContraseniaValida$", validadores);
     }
 
     @Test
-    public void noPuedeSerComun() {
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Contrasenia("12345678"));
+    public void contraseniaNoCumpleMultiplesVerifidores() {
+        Collection validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
+        Assert.assertThrows(IllegalArgumentException.class, () ->
+                new Contrasenia("ContraseniaInvalida", validadores)
+        );
     }
 }
