@@ -1,9 +1,6 @@
 package Seguridad;
 
 import com.google.common.base.Preconditions;
-
-import java.security.*;
-import java.security.spec.*;
 import java.util.regex.*;
 
 public class Contrasenia {
@@ -11,7 +8,7 @@ public class Contrasenia {
     private Hash hash;
     private Salt salt;
 
-    public Contrasenia(String contrasenia) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public Contrasenia(String contrasenia) {
         validarPrecondiciones(contrasenia);
         salt = new Salt();
         hash = new Hash(contrasenia, salt);
@@ -32,7 +29,7 @@ public class Contrasenia {
         return diezMilMasComunes.contiene(contrasenia);
     }
 
-    public boolean esIgualA(String contraseniaCandidata) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean esIgualA(String contraseniaCandidata) {
         return new Hash(contraseniaCandidata, salt).esIgualA(hash);
     }
 }

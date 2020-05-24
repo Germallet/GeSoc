@@ -2,24 +2,21 @@ package Seguridad;
 
 import org.junit.*;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 public class ContraseniaTest {
     private Contrasenia contrasenia;
 
     @Before
-    public void inicializarTest() throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void inicializarTest() {
         contrasenia = new Contrasenia("ContraseniaValida$");
     }
 
     @Test
-    public void contraseniasDeMismoTextoSonIguales() throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void contraseniasDeMismoTextoSonIguales() {
         Assert.assertTrue(contrasenia.esIgualA("ContraseniaValida$"));
     }
 
     @Test
-    public void contaseniasDistintasNoSonIguales() throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void contaseniasDistintasNoSonIguales() {
         Assert.assertFalse(contrasenia.esIgualA("ContraseniaIncorrecta"));
     }
 
