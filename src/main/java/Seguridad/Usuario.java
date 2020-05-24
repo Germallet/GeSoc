@@ -10,10 +10,10 @@ public class Usuario {
     String nombre;
     Contrasenia contrasenia;
 
-    public Usuario(TipoDeUsuario tipo, String nombre, String contrasenia, Collection<ValidadorDeContrasenia> validadoresDeContrasenia) {
+    public Usuario(TipoDeUsuario tipo, String nombre, Contrasenia contrasenia) {
         Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacío"));
         this.tipo = tipo;
         this.nombre = nombre;
-        this.contrasenia = new Contrasenia(contrasenia, validadoresDeContrasenia);
+        this.contrasenia = contrasenia;
     }
 }

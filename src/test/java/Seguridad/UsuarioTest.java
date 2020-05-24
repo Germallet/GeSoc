@@ -8,6 +8,7 @@ import static Seguridad.TipoDeUsuario.ADMINISTRADOR;
 public class UsuarioTest {
     @Test
     public void UsuarioDebeTenerNombre() {
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Usuario(ADMINISTRADOR, "", "ContraseniaVálida$", new ArrayList()));
+        Contrasenia contrasenia = new Contrasenia("Contrasenia", new ArrayList());
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Usuario(ADMINISTRADOR, "", contrasenia));
     }
 }
