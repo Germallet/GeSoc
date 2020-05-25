@@ -9,10 +9,8 @@ public class Proveedor {
     String direccionPostal;
 
     public Proveedor(String nombre, Identificador identificador, String direccionPostal) {
-        Preconditions.checkNotNull(nombre, "No se ingreso un nombre");
-        Preconditions.checkNotNull(direccionPostal, "No se ingreso una direccion");
-        this.nombre = nombre;
+        this.nombre = Preconditions.checkNotNull(nombre, "No se ingreso un nombre");;
         this.identificador = identificador;
-        this.direccionPostal = direccionPostal;
+        this.direccionPostal = Preconditions.checkNotNull(direccionPostal, "No se ingreso una direccion");;
     }
 }

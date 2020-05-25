@@ -15,12 +15,11 @@ public class Egreso {
     List<Item> items;
 
     Egreso(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
-        validarAtributos(organizacion, unProveedor, fecha, unPago, unosItems);
-        this.organizacion = organizacion;
-        this.fecha = fecha;
-        this.proveedor = unProveedor;
-        this.medioDePago = unPago;
-        this.items = unosItems;
+        this.organizacion = Preconditions.checkNotNull(organizacion, "No se ingreso una organizacion");
+        this.fecha = Preconditions.checkNotNull(fecha, "No se ingreso una fecha");
+        this.proveedor = Preconditions.checkNotNull(unProveedor, "No se ingreso un proveedor");
+        this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
+        this.items = Preconditions.checkNotNull(unosItems, "No se ingreso ningun item");
     }
 
     public void setDocumentoComercial(DocumentoComercial unDocumento){
@@ -31,11 +30,4 @@ public class Egreso {
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
-    private void validarAtributos(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
-        Preconditions.checkNotNull(organizacion, "No se ingresó una organización");
-        Preconditions.checkNotNull(unProveedor, "No se ingresó un proveedor");
-        Preconditions.checkNotNull(fecha, "No se ingresó una fecha");
-        Preconditions.checkNotNull(unPago, "No se ingresó un medio de pago");
-        Preconditions.checkNotNull(unosItems, "No se ingresó ningun item");
-    }
 }
