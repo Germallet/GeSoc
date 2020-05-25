@@ -1,15 +1,6 @@
 package Organizaciones;
 
-public interface Categoria {
-}
-
-class Empresa implements Categoria {
-    Clasificacion clasificacion;
-
-    Empresa(Clasificacion clasificacion) {
-        this.clasificacion = clasificacion;
-    }
-}
-
-class OSC implements Categoria {
+public enum Categoria {
+    EMPRESA_MICRO, EMPRESA_PEQUENIA, EMPRESA_MEDIANA_TRAMO1,
+    EMPRESA_MEDIANA_TRAMO2, OSC
 }
