@@ -14,18 +14,11 @@ class Juridica implements Entidad{
     Categoria categoria;
 
     Juridica(String razonSocial, String nombreFicticio, int CUIT, int direccionPostal, Categoria categoria) {
-        validarAtributos(razonSocial, nombreFicticio, categoria);
-        this.razonSocial = razonSocial;
-        this.nombreFicticio = nombreFicticio;
+        this.razonSocial = Preconditions.checkNotNull(razonSocial, "No se ingresó razón social");
+        this.nombreFicticio = Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
         this.CUIT = CUIT;
         this.direccionPostal = direccionPostal;
-        this.categoria = categoria;
-    }
-
-    private void validarAtributos(String razonSocial, String nombreFicticio, Categoria categoria) {
-        Preconditions.checkNotNull(razonSocial, "No se ingresó razón social");
-        Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
-        Preconditions.checkNotNull(categoria, "No se ingresó categoría");
+        this.categoria = Preconditions.checkNotNull(categoria, "No se ingresó categoría");
     }
 
     public void setCodigoDeInscripcion(int unCodigo) {
@@ -39,8 +32,7 @@ class Base implements Entidad{
     Juridica entidadJuridica;
 
     Base(String nombreFicticio, String descripcion) {
-        Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
-        this.nombreFicticio = nombreFicticio;
+        this.nombreFicticio = Preconditions.checkNotNull(nombreFicticio, "No se ingresó nombre ficticio");
         this.descripcion = descripcion;
     }
 
