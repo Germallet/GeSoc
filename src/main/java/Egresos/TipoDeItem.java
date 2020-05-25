@@ -1,6 +1,5 @@
 package Egresos;
 
 enum TipoDeItem {
-    Producto,
-    Servicio
+    PRODUCTO, SERVICIO
 }
