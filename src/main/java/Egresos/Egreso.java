@@ -13,6 +13,8 @@ public class Egreso {
     LocalDate fecha;
     MedioDePago medioDePago;
     List<Item> items;
+    int cantidadPresupuestoRequerido;
+    List<Presupuesto>presupuestos;
 
     Egreso(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
         this.organizacion = Preconditions.checkNotNull(organizacion, "No se ingreso una organizacion");
