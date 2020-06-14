@@ -18,4 +18,8 @@ public class Pais {
     public List<Provincia> provincias() {
         return Localizacion.servicio().obtenerProvincias(this);
     }
+
+    public Moneda moneda() {
+        return Localizacion.servicio().obtenerMoneda(this);
+    }
 }

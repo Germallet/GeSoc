@@ -26,6 +26,7 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
     private String obtenerStringJSON(String path){
         return comunicarseConAPI(path).getEntity(String.class);
     }
+
     private ObjectMapper mapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -45,24 +46,57 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
 
     @Override
     public List<Provincia> obtenerProvincias(Pais pais) {
-        ObjectMapper mapper = mapper();
         String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getId());
 
         try {
+            ObjectMapper mapper = mapper();
             String states = mapper.readTree(respuesta).findPath("states").toString();
             return mapper.readValue(states, new TypeReference<List<Provincia>>(){});
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
+
     @Override
     public List<Ciudad> obtenerCiudades(Provincia provincia) {
-        ObjectMapper mapper = mapper();
         String respuesta = obtenerStringJSON("classified_locations/states/" + provincia.getId());
 
         try {
+            ObjectMapper mapper = mapper();
             String cities = mapper.readTree(respuesta).findPath("cities").toString();
             return mapper.readValue(cities, new TypeReference<List<Ciudad>>(){});
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    @Override
+    public List<Moneda> obtenerMonedas() {
+        String respuesta = obtenerStringJSON("currencies");
+
+        try {
+            return mapper().readValue(respuesta, new TypeReference<List<Moneda>>(){});
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+
+    private String obtenerIdMoneda(Pais pais) {
+        String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getId());
+
+        try {
+            return mapper().readTree(respuesta).findPath("currency_id").asText();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+    @Override
+    public Moneda obtenerMoneda(Pais pais) {
+        String respuesta = obtenerStringJSON("currencies/" + obtenerIdMoneda(pais));
+
+        try {
+            return mapper().readValue(respuesta, Moneda.class);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

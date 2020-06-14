@@ -36,4 +36,20 @@ public class ServicioMercadoLibreTest {
         List<Ciudad> ciudades = Localizacion.servicio().obtenerCiudades(buenosAiresInterior);
         Assert.assertTrue(!ciudades.isEmpty());
     }
+
+    @Test
+    public void monedas() {
+        List<Moneda> monedas = Localizacion.servicio().obtenerMonedas();
+        monedas.forEach(elemento -> System.out.println(elemento.getDescripcion()));
+        Assert.assertTrue(!monedas.isEmpty());
+    }
+
+    @Test
+    public void moneda() {
+        Pais argentina = Mockito.mock(Pais.class);
+        Mockito.when(argentina.getId()).thenReturn("AR");
+
+        Moneda pesosArg = Localizacion.servicio().obtenerMoneda(argentina);
+        Assert.assertEquals("Peso argentino", pesosArg.getDescripcion());
+    }
 }
