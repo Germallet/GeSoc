@@ -1,11 +1,9 @@
-package MercadoLibre;
+package Localizacion;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Ciudad {
-    private String nombre;
-
-    public Ciudad(String nombre) {
-        this.nombre = nombre;
-    }
+    @JsonProperty("name") private String nombre;
 
     public String getNombre() {
         return nombre;

@@ -1,19 +1,21 @@
-package MercadoLibre;
+package Localizacion;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
 
 public class Pais {
-    private String nombre;
+    private String id;
+    @JsonProperty("name") private String nombre;
 
-    public Pais(String nombre) {
-        this.nombre = nombre;
+    public String getId() {
+        return id;
     }
-
     public String getNombre() {
         return nombre;
     }
 
     public List<Provincia> provincias() {
-        return MercadoLibreAPI.servicio().obtenerProvincias(this);
+        return Localizacion.servicio().obtenerProvincias(this);
     }
 }
