@@ -17,6 +17,7 @@ public class EgresoTest {
     MedioDePago medioDePago;
     Identificador identificador;
     List<Item> items = new ArrayList<>();
+    int cantidadPresupuestoRequerido; // TODO ?
 
     public Item unItem;
     public Item otroItem;
@@ -34,7 +35,7 @@ public class EgresoTest {
         items.add(unItem);
         items.add(otroItem);
 
-        egreso = new Egreso(organizacion, proveedor, LocalDate.now(),  medioDePago, items);
+        egreso = new Egreso(organizacion, proveedor, LocalDate.now(),  medioDePago, items, 4000);
     }
 
      @Test
@@ -44,6 +45,6 @@ public class EgresoTest {
 
      @Test
     public void elProveedorDelEgresoNoPuedeSerNulo() {
-         Assert.assertThrows(NullPointerException.class, () -> new Egreso(organizacion, null, LocalDate.now(),  medioDePago, items ));
+         Assert.assertThrows(NullPointerException.class, () -> new Egreso(organizacion, null, LocalDate.now(),  medioDePago, items,125 ));
     }
 }

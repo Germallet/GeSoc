@@ -13,8 +13,8 @@ public class Egreso {
     LocalDate fecha;
     MedioDePago medioDePago;
     List<Item> items;
+    List<Presupuesto> presupuestos;
     int cantidadPresupuestoRequerido;
-    List<Presupuesto>presupuestos;
 
     Egreso(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems,int cantidadPresupuestoRequerido) {
         this.organizacion = Preconditions.checkNotNull(organizacion, "No se ingreso una organizacion");
@@ -26,18 +26,17 @@ public class Egreso {
     }
 
     //public void setPresupuestos
-
+/*
     public void setDocumentoComercial(DocumentoComercial unDocumento){
         documento = unDocumento;
     }
-
+*/
     public int valorTotal(){
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
     public boolean verificarPresupuestos(){
-
-        return this.cantidadPresupuestoRequerido ==presupuestos.size();
+        return this.cantidadPresupuestoRequerido == presupuestos.size();
     }
 
 }
