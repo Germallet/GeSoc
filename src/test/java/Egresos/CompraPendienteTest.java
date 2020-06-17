@@ -22,10 +22,11 @@ import static Proveedor.TipoDeID.DNI;
 
 public class CompraPendienteTest {
 
-    boolean requierePresupuestos;
     int presupuestosRequeridos;
     List<Presupuesto> presupuestos;
     Egreso egreso;
+    CompraPendiente compraP;
+    boolean escogerMenor;
 
     @Before
     public void inicializarTest() {
@@ -37,8 +38,8 @@ public class CompraPendienteTest {
         MedioDePago tarjetaCredito = new TarjetaCredito(1243);
         List<Item> items = new ArrayList<>();
 
+
         presupuestos = new ArrayList<>();
-        int cantidadPresupuestoRequerido;
 
         Item item0 = new Item("item0", 124, TipoDeItem.PRODUCTO);
         Item item1 = new Item("item0", 125, TipoDeItem.PRODUCTO);
@@ -51,35 +52,28 @@ public class CompraPendienteTest {
         DocumentoComercial docComercial1 = new DocumentoComercial(123, TipoDeDocumentoComercial.BOLETA);
         DocumentoComercial docComercial2 = new DocumentoComercial(1512, TipoDeDocumentoComercial.CHEQUES);
 
-        List<DocumentoComercial> documentos = new ArrayList<>();
-        documentos.add(docComercial1);
-        documentos.add(docComercial2);
 
-        egreso = new Egreso(organizacion, proveedor, fecha, tarjetaCredito, items);
 
-        requierePresupuestos = true;
+        compraP = new CompraPendiente(organizacion,presupuestosRequeridos,escogerMenor);
+
+        boolean escogerMenor=true;
         presupuestosRequeridos = 3;
 
-        /*Presupuesto unPresupuesto = new Presupuesto("Presupuesto numero 1", egreso, documentos, 2134);
-        Presupuesto otroPresupuesto = new Presupuesto("Presupuesto numero 2", egreso, documentos, 51254);
+        Presupuesto unPresupuesto = new Presupuesto( proveedor, items, egreso, docComercial1);
+        Presupuesto otroPresupuesto = new Presupuesto( proveedor, items, egreso, docComercial2);
 
         presupuestos.add(unPresupuesto);
         presupuestos.add(otroPresupuesto);
-        presupuestos.add(otroPresupuesto);*/
+        presupuestos.add(otroPresupuesto);
 
     }
 
-    @Test
-    public void laCantidadDePresupuestosCargadosEsIgualQueLosRequeridos() {
-        Assert.assertEquals(presupuestos.size(), presupuestosRequeridos);
-    }
 
-    /*
     @Test
     public void laCompraFueRealizadaEnBaseAUnPresupuestoCargado() {
-        Assert.assertTrue(presupuestos.stream().anyMatch(egreso.presupuestos.get(1)));
+        Assert.assertTrue(presupuestos.stream().anyMatch(compraP.presupuestos.get(1)));
     }
-    */
+
 
 
 }
