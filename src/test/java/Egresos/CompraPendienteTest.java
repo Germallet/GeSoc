@@ -1,5 +1,6 @@
 package Egresos;
 import Egresos.*;
+import Localizacion.DireccionPostal;
 import Organizaciones.Organizacion;
 import Proveedor.Identificador;
 import Proveedor.Proveedor;
@@ -8,6 +9,7 @@ import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.mockito.internal.matchers.Or;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import Egresos.DocumentoComercial;
 import static Proveedor.TipoDeID.CUIT;
 import static Proveedor.TipoDeID.DNI;
 
-public class CompraTest {
+public class CompraPendienteTest {
 
     boolean requierePresupuestos;
     int presupuestosRequeridos;
@@ -30,7 +32,7 @@ public class CompraTest {
 
         Organizacion organizacion = new Organizacion();
         DocumentoComercial documento = new DocumentoComercial(12, TipoDeDocumentoComercial.BOLETA);
-        Proveedor proveedor = new Proveedor("Pablo perez", new Identificador(123, CUIT), "Mozart 3200");
+        Proveedor proveedor = new Proveedor("Pablo perez", new Identificador(123, CUIT), Mockito.mock(DireccionPostal.class));
         LocalDate fecha = LocalDate.now();
         MedioDePago tarjetaCredito = new TarjetaCredito(1243);
         List<Item> items = new ArrayList<>();
@@ -53,17 +55,17 @@ public class CompraTest {
         documentos.add(docComercial1);
         documentos.add(docComercial2);
 
-        egreso = new Egreso(organizacion, proveedor, fecha, tarjetaCredito, items, 3);
+        egreso = new Egreso(organizacion, proveedor, fecha, tarjetaCredito, items);
 
         requierePresupuestos = true;
         presupuestosRequeridos = 3;
 
-        Presupuesto unPresupuesto = new Presupuesto("Presupuesto numero 1", egreso, documentos, 2134);
+        /*Presupuesto unPresupuesto = new Presupuesto("Presupuesto numero 1", egreso, documentos, 2134);
         Presupuesto otroPresupuesto = new Presupuesto("Presupuesto numero 2", egreso, documentos, 51254);
 
         presupuestos.add(unPresupuesto);
         presupuestos.add(otroPresupuesto);
-        presupuestos.add(otroPresupuesto);
+        presupuestos.add(otroPresupuesto);*/
 
     }
 

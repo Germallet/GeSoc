@@ -40,7 +40,6 @@ public class ServicioMercadoLibreTest {
     @Test
     public void monedas() {
         List<Moneda> monedas = Localizacion.servicio().obtenerMonedas();
-        monedas.forEach(elemento -> System.out.println(elemento.getDescripcion()));
         Assert.assertTrue(!monedas.isEmpty());
     }
 

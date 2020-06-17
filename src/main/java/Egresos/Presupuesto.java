@@ -1,25 +1,27 @@
 package Egresos;
 
-import Organizaciones.Organizacion;
 import Proveedor.Proveedor;
 import com.google.common.base.Preconditions;
-
-import java.time.LocalDate;
 import java.util.List;
 
-public class Presupuesto{
+public class Presupuesto {
+    private List<Item> items;
+    private Egreso egreso;
+    private DocumentoComercial documentoComercial;
+    private Proveedor proveedor;
 
-    String detalles;
-    Egreso egreso;
-    List<DocumentoComercial> documentosComerciales;
-    int total;
-
-
-   Presupuesto(String detalles,Egreso egreso,List<DocumentoComercial> documentoComercials,int total) {
-        this.detalles = Preconditions.checkNotNull(detalles, "No se ingreso un detalle");
+   Presupuesto(Proveedor proveedor, List<Item> items, Egreso egreso, DocumentoComercial documentoComercial) {
+        this.proveedor = proveedor;
+        this.items = Preconditions.checkNotNull(items, "No se ingresaron items");
         this.egreso = egreso; //la validacion de que el egreso no sea cualquier cosa esta dada por la propia clase Egreso
-        this.documentosComerciales = documentoComercials;
-        this.total = Preconditions.checkNotNull(total,"El valor total no es valido");
+        this.documentoComercial = documentoComercial;
+   }
+
+    public int valorTotal(){
+        return items.stream().mapToInt(unItem -> unItem.valor()).sum();
     }
 
+    public Proveedor getProveedor() { return proveedor; }
+
+    public List<Item> getItems() { return items; }
 }

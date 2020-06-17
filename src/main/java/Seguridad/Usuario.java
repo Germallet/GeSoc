@@ -1,14 +1,12 @@
 package Seguridad;
 
-import Seguridad.ValidadorDeContrasenia.ValidadorDeContrasenia;
 import com.google.common.base.Preconditions;
-
-import java.util.Collection;
 
 public class Usuario {
     TipoDeUsuario tipo;
     String nombre;
     Contrasenia contrasenia;
+    BandejaDeMensajes bandejaDeMensajes;
 
     public Usuario(TipoDeUsuario tipo, String nombre, Contrasenia contrasenia) {
         Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacío"));
@@ -16,4 +14,6 @@ public class Usuario {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
     }
+
+    public BandejaDeMensajes getBandejaDeMensajes() { return bandejaDeMensajes; }
 }
