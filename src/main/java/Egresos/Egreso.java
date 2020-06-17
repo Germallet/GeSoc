@@ -22,7 +22,7 @@ public class Egreso {
         this.proveedor = Preconditions.checkNotNull(unProveedor, "No se ingreso un proveedor");
         this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
         this.items = Preconditions.checkNotNull(unosItems, "No se ingreso ningun item");
-        this.cantidadPresupuestoRequerido=cantidadPresupuestoRequerido;
+        this.cantidadPresupuestoRequerido = cantidadPresupuestoRequerido;
     }
 
     //public void setPresupuestos
