@@ -14,10 +14,11 @@ public class Egreso {
     LocalDate fecha;
     MedioDePago medioDePago;
     List<Item> items;
-    List<Presupuesto> presupuestos;
 
-    Egreso(Organizacion organizacion, Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
+
+    Egreso(Organizacion organizacion, DocumentoComercial documento,Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems) {
         this.organizacion = Preconditions.checkNotNull(organizacion, "No se ingreso una organizacion");
+        this.documento=documento;
         this.fecha = Preconditions.checkNotNull(fecha, "No se ingreso una fecha");
         this.proveedor = Preconditions.checkNotNull(unProveedor, "No se ingreso un proveedor");
         this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");

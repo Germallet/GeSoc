@@ -15,13 +15,14 @@ import java.time.LocalDate;
 import static Proveedor.TipoDeID.DNI;
 
 public class EgresoTest {
-    private Organizacion organizacion;
-    private Egreso egreso;
-    private Proveedor proveedor;
+    Organizacion organizacion;
+    DocumentoComercial documento;
+    Proveedor proveedor;
     MedioDePago medioDePago;
     Identificador identificador;
     List<Item> items = new ArrayList<>();
-    int cantidadPresupuestoRequerido; // TODO ?
+    Egreso egreso;
+
 
     public Item unItem;
     public Item otroItem;
@@ -29,17 +30,18 @@ public class EgresoTest {
     @Before
     public void inicializarTest() {
         organizacion = new Organizacion();
+        documento= new DocumentoComercial(1,TipoDeDocumentoComercial.FACTURA);
         identificador = new Identificador(42698536, DNI);
         proveedor = new Proveedor("juan", identificador, Mockito.mock(DireccionPostal.class));
         medioDePago = new TarjetaCredito(22345);
+
 
         unItem = new Item("item1", 100, TipoDeItem.PRODUCTO);
         otroItem = new Item("item2", 250, TipoDeItem.SERVICIO);
 
         items.add(unItem);
         items.add(otroItem);
-
-        //egreso = new Egreso(organizacion, proveedor, LocalDate.now(),  medioDePago, items, 4000);
+        egreso = new Egreso(organizacion,documento,proveedor,LocalDate.now(),medioDePago,items);
     }
 
      @Test
@@ -49,6 +51,6 @@ public class EgresoTest {
 
      @Test
     public void elProveedorDelEgresoNoPuedeSerNulo() {
-         //Assert.assertThrows(NullPointerException.class, () -> new Egreso(organizacion, null, LocalDate.now(),  medioDePago, items,125 ));
+         Assert.assertThrows(NullPointerException.class, () -> new Egreso(organizacion,documento, null, LocalDate.now(),  medioDePago, items ));
     }
 }
