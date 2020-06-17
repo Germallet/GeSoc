@@ -67,13 +67,10 @@ public class CompraPendienteTest {
         presupuestos.add(otroPresupuesto);
 
     }
-
-
     @Test
-    public void laCompraFueRealizadaEnBaseAUnPresupuestoCargado() {
-        Assert.assertTrue(presupuestos.stream().anyMatch(compraP.presupuestos.get(1)));
+    public void laCantidadDePresupuestosCargadosEsIgualQueLosRequeridos() {
+        Assert.assertTrue(presupuestos.size() >= presupuestosRequeridos);
     }
 
-
-
 }
+

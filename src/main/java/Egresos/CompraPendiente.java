@@ -18,7 +18,10 @@ public class CompraPendiente {
     private List<Usuario> revisores = new ArrayList<>();
     private int presupuestosRequeridos;
     private boolean escogerMenor;
+    DocumentoComercial documento;
 
+    public List<Presupuesto> getPresupuestos() { return presupuestos; }
+    public DocumentoComercial getDocumento() { return documento; }
     public CompraPendiente(Organizacion organizacion, int presupuestosRequeridos, boolean escogerMenor) {
         this.organizacion = organizacion;
         this.presupuestosRequeridos = presupuestosRequeridos;
@@ -46,6 +49,7 @@ public class CompraPendiente {
         if (escogerMenor) Preconditions.checkArgument(presupuestos.stream().allMatch(presupuesto -> presupuesto.valorTotal() <= presupuestoElegido.valorTotal()));
 
         revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje("Egreso generado"));
-        return new Egreso(organizacion, presupuestoElegido.getProveedor(), LocalDate.now(), medioDePago, presupuestoElegido.getItems());
+        return new Egreso(organizacion, documento, presupuestoElegido.getProveedor(), LocalDate.now(), medioDePago, presupuestoElegido.getItems());
     }
+
 }
