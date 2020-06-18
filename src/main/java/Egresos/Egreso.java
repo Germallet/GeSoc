@@ -29,7 +29,5 @@ public class Egreso {
         documento = unDocumento;
     }
 
-    public int valorTotal(){
-        return items.stream().mapToInt(unItem -> unItem.valor()).sum();
-    }
+
 }

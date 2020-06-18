@@ -22,6 +22,7 @@ public class EgresoTest {
     Identificador identificador;
     List<Item> items = new ArrayList<>();
     Egreso egreso;
+    Presupuesto presupuesto;
 
 
     public Item unItem;
@@ -42,11 +43,12 @@ public class EgresoTest {
         items.add(unItem);
         items.add(otroItem);
         egreso = new Egreso(organizacion,documento,proveedor,LocalDate.now(),medioDePago,items);
+        presupuesto=new Presupuesto(proveedor,items,egreso,documento);
     }
 
      @Test
     public void elValorTotalEs350() {
-        Assert.assertEquals(350, egreso.valorTotal());
+        Assert.assertEquals(350, presupuesto.valorTotal());
      }
 
      @Test
