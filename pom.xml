@@ -41,7 +41,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ar.edu.frba.dds.gesoc.Main</mainClass>
+                            <mainClass>Main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
