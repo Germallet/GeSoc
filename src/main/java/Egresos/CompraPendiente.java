@@ -1,4 +1,4 @@
-package Egresos;
+/*package Egresos;
 
 import Organizaciones.Organizacion;
 import Proveedor.Proveedor;
@@ -22,6 +22,7 @@ public class CompraPendiente {
 
     public List<Presupuesto> getPresupuestos() { return presupuestos; }
     public DocumentoComercial getDocumento() { return documento; }
+
     public CompraPendiente(Organizacion organizacion, int presupuestosRequeridos, boolean escogerMenor) {
         this.organizacion = organizacion;
         this.presupuestosRequeridos = presupuestosRequeridos;
@@ -53,3 +54,4 @@ public class CompraPendiente {
     }
 
 }
+*/
