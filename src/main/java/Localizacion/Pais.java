@@ -8,6 +8,7 @@ public class Pais {
     @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
 
+    public void setIdAPI(String idAPI) { this.idAPI = idAPI; }
     public String getIdAPI() {
         return idAPI;
     }

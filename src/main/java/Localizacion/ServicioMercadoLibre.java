@@ -23,7 +23,7 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
                 .get(ClientResponse.class);
         return response;
     }
-    private String obtenerStringJSON(String path){
+    public String obtenerStringJSON(String path){
         return comunicarseConAPI(path).getEntity(String.class);
     }
 

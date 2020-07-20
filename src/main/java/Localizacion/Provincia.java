@@ -9,6 +9,7 @@ public class Provincia {
     @JsonProperty("name") private String nombre;
     private Pais pais;
 
+    public void setIdAPI(String idAPI) { this.idAPI = idAPI; }
     public String getIdAPI() {
         return idAPI;
     }
