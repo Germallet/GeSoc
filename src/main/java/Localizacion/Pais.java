@@ -5,11 +5,11 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.List;
 
 public class Pais {
-    private String id;
+    @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
 
-    public String getId() {
-        return id;
+    public String getIdAPI() {
+        return idAPI;
     }
     public String getNombre() {
         return nombre;

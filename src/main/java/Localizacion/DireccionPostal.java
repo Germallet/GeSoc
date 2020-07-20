@@ -5,15 +5,11 @@ public class DireccionPostal {
     private String piso;
     private int altura;
     private Ciudad ciudad;
-    private Pais pais;
-    private Provincia provincia;
 
-    public DireccionPostal(String calle, String piso, int altura, Ciudad ciudad, Pais pais, Provincia provincia) {
+    public DireccionPostal(String calle, String piso, int altura, Ciudad ciudad) {
         this.calle = calle;
         this.piso = piso;
         this.altura = altura;
         this.ciudad = ciudad;
-        this.pais = pais;
-        this.provincia = provincia;
     }
 }

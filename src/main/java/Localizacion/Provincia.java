@@ -5,16 +5,20 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.List;
 
 public class Provincia {
-    private String id;
+    @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
+    private Pais pais;
 
-    public String getId() {
-        return id;
+    public String getIdAPI() {
+        return idAPI;
     }
     public String getNombre() {
         return nombre;
     }
 
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
     public List<Ciudad> ciudades() {
         return Localizacion.servicio().obtenerCiudades(this);
     }

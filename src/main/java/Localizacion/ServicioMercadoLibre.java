@@ -36,7 +36,6 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
     @Override
     public List<Pais> obtenerPaises() {
         String respuesta = obtenerStringJSON("classified_locations/countries");
-
         try {
             return mapper().readValue(respuesta, new TypeReference<List<Pais>>(){});
         } catch (IOException exception) {
@@ -46,12 +45,13 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
 
     @Override
     public List<Provincia> obtenerProvincias(Pais pais) {
-        String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getId());
-
+        String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getIdAPI());
         try {
             ObjectMapper mapper = mapper();
             String states = mapper.readTree(respuesta).findPath("states").toString();
-            return mapper.readValue(states, new TypeReference<List<Provincia>>(){});
+            List<Provincia> provincias = mapper.readValue(states, new TypeReference<List<Provincia>>(){});
+            provincias.forEach(provincia -> provincia.setPais(pais));
+            return provincias;
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -59,12 +59,13 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
 
     @Override
     public List<Ciudad> obtenerCiudades(Provincia provincia) {
-        String respuesta = obtenerStringJSON("classified_locations/states/" + provincia.getId());
-
+        String respuesta = obtenerStringJSON("classified_locations/states/" + provincia.getIdAPI());
         try {
             ObjectMapper mapper = mapper();
             String cities = mapper.readTree(respuesta).findPath("cities").toString();
-            return mapper.readValue(cities, new TypeReference<List<Ciudad>>(){});
+            List<Ciudad> ciudades = mapper.readValue(cities, new TypeReference<List<Ciudad>>(){});
+            ciudades.forEach(ciudad -> ciudad.setProvincia(provincia));
+            return ciudades;
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -81,9 +82,8 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
         }
     }
 
-
     private String obtenerIdMoneda(Pais pais) {
-        String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getId());
+        String respuesta = obtenerStringJSON("classified_locations/countries/" + pais.getIdAPI());
 
         try {
             return mapper().readTree(respuesta).findPath("currency_id").asText();
