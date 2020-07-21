@@ -1,5 +1,4 @@
 package Organizaciones;
-import Egresos.Egreso;
 import java.util.List;
 
 public class Organizacion {
@@ -10,7 +9,4 @@ public class Organizacion {
     public void validarEgresos() {
         entidades.forEach(entidad -> entidad.validarEgresos());
     }
-
-
-
 }
