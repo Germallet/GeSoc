@@ -1,11 +1,18 @@
 package Organizaciones;
 
+import Egresos.Reporte;
 import com.google.common.base.Preconditions;
 
-public interface Entidad {
+public class Entidad {
+
+     Categoria comportamiento ;
+    public Reporte generarReporte(){
+        return new Reporte();
+
+    }
 }
 
-class Juridica implements Entidad{
+class Juridica extends Entidad{
     String razonSocial;
     String nombreFicticio;
     int CUIT;
@@ -26,7 +33,7 @@ class Juridica implements Entidad{
     }
 }
 
-class Base implements Entidad{
+class Base extends Entidad{
     String nombreFicticio;
     String descripcion;
     Juridica entidadJuridica;

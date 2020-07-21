@@ -21,6 +21,7 @@ public class Egreso {
      List<Usuario> revisores = new ArrayList<>();
     int presupuestosRequeridos;
     boolean escogerMenor;
+    Etiqueta etiqueta;
 
 
     Egreso(Organizacion organizacion, DocumentoComercial documento,Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems,List<Presupuesto>presupuestos, int presupuestosRequeridos) {
