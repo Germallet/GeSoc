@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import Organizaciones.*;
 
 public class Egreso {
     private DocumentoComercial documento;
@@ -15,7 +16,8 @@ public class Egreso {
     private List<Usuario> revisores = new ArrayList<>();
     private int presupuestosRequeridos;
     private boolean escogerMenor;
-    //Etiqueta etiqueta;
+    Etiqueta etiqueta;
+
 
     Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
         this.documento = documento;
@@ -50,4 +52,16 @@ public class Egreso {
         if (esValido())
             revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje("Egreso generado"));
     }
-};
+
+    public int valorTotal(){
+       return presupuestoElegido.valorTotal();
+    }
+
+    public boolean esDelUltimoMes(){
+        return this.fecha.getMonth() == LocalDate.now().getMonth();
+    }
+
+    public boolean tieneEtiqueta(Etiqueta unaEtiqueta){
+        return this.etiqueta == unaEtiqueta;
+    }
+}

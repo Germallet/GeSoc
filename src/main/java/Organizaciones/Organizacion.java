@@ -4,9 +4,13 @@ import java.util.List;
 
 public class Organizacion {
     List<Entidad> entidades;
-    List<Egreso> egresos;
+    List<Etiqueta> etiquetas;
+    List<Categoria> categorias;
 
     public void validarEgresos() {
-        egresos.forEach(egreso -> egreso.validar());
+        entidades.forEach(entidad -> entidad.validarEgresos());
     }
+
+
+
 }
