@@ -1,45 +1,53 @@
 package Egresos;
 
-import Organizaciones.Organizacion;
-import Proveedor.Proveedor;
 import Seguridad.Usuario;
 import com.google.common.base.Preconditions;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Egreso {
-    Organizacion organizacion;
-    DocumentoComercial documento;
-    Proveedor proveedor;
-    LocalDate fecha;
-    MedioDePago medioDePago;
-    List<Item> items;
-     List<Presupuesto> presupuestos = new ArrayList<>();
-     Presupuesto presupuestoElegido;
-     List<Usuario> revisores = new ArrayList<>();
-    int presupuestosRequeridos;
-    boolean escogerMenor;
-    Etiqueta etiqueta;
+    private DocumentoComercial documento;
+    private LocalDate fecha;
+    private MedioDePago medioDePago;
+    private List<Presupuesto> presupuestos = new ArrayList<>();
+    private Presupuesto presupuestoElegido;
+    private List<Usuario> revisores = new ArrayList<>();
+    private int presupuestosRequeridos;
+    private boolean escogerMenor;
+    //Etiqueta etiqueta;
 
-
-    Egreso(Organizacion organizacion, DocumentoComercial documento,Proveedor unProveedor, LocalDate fecha, MedioDePago unPago, List<Item> unosItems,List<Presupuesto>presupuestos, int presupuestosRequeridos) {
-        this.organizacion = Preconditions.checkNotNull(organizacion, "No se ingreso una organizacion");
-        this.documento=documento;
-        this.fecha = Preconditions.checkNotNull(fecha, "No se ingreso una fecha");
-        this.proveedor = Preconditions.checkNotNull(unProveedor, "No se ingreso un proveedor");
+    Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
+        this.documento = documento;
+        this.fecha = fecha;
         this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
-        this.items = Preconditions.checkNotNull(unosItems, "No se ingreso ningun item");
-        this.presupuestosRequeridos=presupuestosRequeridos;
+        this.presupuestosRequeridos = presupuestosRequeridos;
+        this.escogerMenor = escogerMenor;
     }
 
-    public void setDocumentoComercial(DocumentoComercial unDocumento){
-        documento = unDocumento;
+    public void agregarPresupuesto(Presupuesto nuevoPresupuesto) {
+        presupuestos.add(nuevoPresupuesto);
     }
-   public void setPresupuestos(List<Presupuesto>presupuestos){
-       Preconditions.checkArgument(presupuestos.size() >= presupuestosRequeridos);
-       this.presupuestos=presupuestos;
-   }
+
+    public void elegirPresupuesto(Presupuesto presupuestoElegido) {
+        Preconditions.checkArgument(presupuestos.contains(presupuestoElegido));
+        this.presupuestoElegido = presupuestoElegido;
+    }
+
+    private boolean presupuestosSuficiente() {
+        return presupuestos.size() >= presupuestosRequeridos;
+    }
+    private boolean criterioDelMenor() {
+        if (escogerMenor)
+            return presupuestos.stream().allMatch(presupuesto -> presupuesto.valorTotal() >= presupuestoElegido.valorTotal());
+        return true;
+    }
+    public boolean esValido() {
+        return presupuestoElegido != null && presupuestosSuficiente() && criterioDelMenor();
+    }
+
+    public void validar() {
+        if (esValido())
+            revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje("Egreso generado"));
+    }
 };
-
