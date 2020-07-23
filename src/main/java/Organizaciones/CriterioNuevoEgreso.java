@@ -1,4 +1,5 @@
-/*package Organizaciones;
+/*
+package Organizaciones;
 
 import Egresos.Egreso;
 import java.util.List;
@@ -21,4 +22,5 @@ public class CriterioNuevoEgresoMontoMaximo implements CriterioNuevoEgreso {
     public boolean permiteEgreso(List<Egreso> egresos, Egreso nuevoEgreso) {
         return egresos.stream().mapToInt(egreso -> egreso.valorTotal()).sum() + nuevoEgreso.valorTotal() <= montoMaximo;
     }
-}*/
+}
+*/

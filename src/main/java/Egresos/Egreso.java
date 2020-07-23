@@ -16,7 +16,7 @@ public class Egreso {
     private List<Usuario> revisores = new ArrayList<>();
     private int presupuestosRequeridos;
     private boolean escogerMenor;
-    Etiqueta etiqueta;
+    List<Etiqueta> etiquetas = new ArrayList<>();
 
 
     Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
@@ -58,10 +58,10 @@ public class Egreso {
     }
 
     public boolean esDelUltimoMes(){
-        return this.fecha.getMonth() == LocalDate.now().getMonth();
-    }
+        return this.fecha.getMonth().equals(LocalDate.now().getMonth());
+    } //todo test
 
     public boolean tieneEtiqueta(Etiqueta unaEtiqueta){
-        return this.etiqueta == unaEtiqueta;
+        return this.etiquetas.contains(unaEtiqueta);
     }
 }

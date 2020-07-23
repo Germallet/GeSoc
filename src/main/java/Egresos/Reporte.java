@@ -13,7 +13,7 @@ public class Reporte {
 
     public List<Egreso> generarEgresosPorEtiqueta(Etiqueta etiqueta){
         return egresos.stream().filter(egreso -> egreso.tieneEtiqueta(etiqueta)).collect(Collectors.toList());
-    }
-    //suponemos que la lista de egresos es en base a una etiqueta en particular.
+    }//TODO TEST
+
 }
 
