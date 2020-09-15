@@ -5,9 +5,20 @@ import com.google.common.base.Preconditions;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import Organizaciones.*;
 
+@Entity
+@Table(name = "egresos")
 public class Egreso {
+
+    @Id
+    @GeneratedValue
+    private Long id_egreso;
+
     private DocumentoComercial documento;
     private LocalDate fecha;
     private MedioDePago medioDePago;

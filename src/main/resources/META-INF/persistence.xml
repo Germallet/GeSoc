@@ -8,20 +8,29 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
+        <class>Egresos.Egreso</class>
+        <class>Egresos.Item</class>
+
+        <class>Organizaciones.Categoria</class>
+        <class>Organizaciones.Entidad</class>
+        <class>Organizaciones.Organizacion</class>
+
+        <class>Proveedor.Proveedor</class>
+
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
 
             <!-- este es para conectarte localmente /-->
-            <!--property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gesoc" />
             <property name="hibernate.connection.username" value="root" /> 
-            <property name="hibernate.connection.password" value="mysql" /-->
+            <property name="hibernate.connection.password" value="mysql" />
 
-            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+            <!--property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="mysql" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /-->
 
                             
             <property name="hibernate.show_sql" value="true" /> 

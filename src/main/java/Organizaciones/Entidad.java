@@ -4,10 +4,22 @@ import Egresos.Egreso;
 import Egresos.Reporte;
 import com.google.common.base.Preconditions;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Entity
+@Table(name = "entidades")
 public abstract class Entidad {
+
+    @Id
+    @GeneratedValue
+    private long id_entidad;
+
     protected List<Egreso> egresos;
 
     public Reporte generarReporte() {
