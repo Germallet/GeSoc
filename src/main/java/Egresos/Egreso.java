@@ -1,32 +1,33 @@
 package Egresos;
 
+import Main.IDGenerator;
+import Seguridad.Mensaje;
 import Seguridad.Usuario;
 import com.google.common.base.Preconditions;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import Organizaciones.*;
 
 @Entity
-@Table(name = "egresos")
-public class Egreso {
-
-    @Id
-    @GeneratedValue
-    private Long id_egreso;
-
+public class Egreso extends IDGenerator {
+    @OneToOne
     private DocumentoComercial documento;
     private LocalDate fecha;
+
+    @Enumerated(EnumType.STRING)
     private MedioDePago medioDePago;
+    @OneToMany
     private List<Presupuesto> presupuestos = new ArrayList<>();
+    @OneToOne
     private Presupuesto presupuestoElegido;
+    @ManyToMany
     private List<Usuario> revisores = new ArrayList<>();
     private int presupuestosRequeridos;
     private boolean escogerMenor;
+    @ManyToMany
     List<Etiqueta> etiquetas = new ArrayList<>();
 
 
@@ -36,6 +37,10 @@ public class Egreso {
         this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
         this.presupuestosRequeridos = presupuestosRequeridos;
         this.escogerMenor = escogerMenor;
+    }
+
+    public Egreso() {
+        super();
     }
 
     public void agregarPresupuesto(Presupuesto nuevoPresupuesto) {
@@ -61,7 +66,7 @@ public class Egreso {
 
     public void validar() {
         if (esValido())
-            revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje("Egreso generado"));
+            revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje(new Mensaje("Egreso generado")));
     }
 
     public int valorTotal(){

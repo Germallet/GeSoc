@@ -22,7 +22,7 @@ public class EgresoTest {
 
     @Before
     public void inicializarTest() {
-        DocumentoComercial documento= new DocumentoComercial(1,TipoDeDocumentoComercial.FACTURA);
+        DocumentoComercial documento= new DocumentoComercial(TipoDeDocumentoComercial.FACTURA);
         Proveedor proveedor = new Proveedor("juan", new Identificador(0, DNI), Mockito.mock(DireccionPostal.class));
 
         Item itemA = new Item("itemA", 100, TipoDeItem.PRODUCTO);
@@ -41,7 +41,7 @@ public class EgresoTest {
 
     @Test
     public void laCantidadDePresupuestosEsMenorQueLosRequeridos() {
-        egreso = new Egreso(documento, LocalDate.now(), new TarjetaCredito(0), 2, false);
+        egreso = new Egreso(documento, LocalDate.now(), MedioDePago.TarjetaCredito, 2, false);
         egreso.agregarPresupuesto(presupuestoA);
         egreso.elegirPresupuesto(presupuestoA);
 
@@ -50,7 +50,7 @@ public class EgresoTest {
 
     @Test
     public void laCantidadDePresupuestosEsMayorQueLosRequeridos() {
-        egreso = new Egreso(documento, LocalDate.now(), new TarjetaCredito(0), 1, false);
+        egreso = new Egreso(documento, LocalDate.now(), MedioDePago.TarjetaCredito, 1, false);
         egreso.agregarPresupuesto(presupuestoA);
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoA);
@@ -60,7 +60,7 @@ public class EgresoTest {
 
     @Test
     public void presupuestoMenorEnEscogerMenor() {
-        egreso = new Egreso(documento, LocalDate.now(), new TarjetaCredito(0), 0, true);
+        egreso = new Egreso(documento, LocalDate.now(), MedioDePago.TarjetaCredito, 0, true);
         egreso.agregarPresupuesto(presupuestoA);
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoA);
@@ -70,7 +70,7 @@ public class EgresoTest {
 
     @Test
     public void presupuestoMayorEnEscogerMenor() {
-        egreso = new Egreso(documento, LocalDate.now(), new TarjetaCredito(0), 0, true);
+        egreso = new Egreso(documento, LocalDate.now(), MedioDePago.TarjetaCredito, 0, true);
         egreso.agregarPresupuesto(presupuestoA);
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoB);

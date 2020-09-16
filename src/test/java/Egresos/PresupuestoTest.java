@@ -15,7 +15,7 @@ public class PresupuestoTest {
 
     @Before
     public void inicializarTest() {
-        DocumentoComercial documento= new DocumentoComercial(1,TipoDeDocumentoComercial.FACTURA);
+        DocumentoComercial documento= new DocumentoComercial(TipoDeDocumentoComercial.FACTURA);
         Proveedor proveedor = new Proveedor("juan", new Identificador(0, DNI), Mockito.mock(DireccionPostal.class));
 
         List<Item> items = new ArrayList<>();

@@ -1,11 +1,19 @@
 package Egresos;
 
-public class DocumentoComercial {
-    int numero;
+import Main.IDGenerator;
+
+import javax.persistence.*;
+
+@Entity
+public class DocumentoComercial extends IDGenerator {
+    @Enumerated(EnumType.STRING)
     TipoDeDocumentoComercial tipo;
 
-    DocumentoComercial(int numero, TipoDeDocumentoComercial tipo){
-        this.numero = numero;
+    DocumentoComercial(TipoDeDocumentoComercial tipo){
         this.tipo = tipo;
+    }
+
+    public DocumentoComercial() {
+        super();
     }
 }

@@ -1,10 +1,12 @@
 package Main;
 
 import Organizaciones.Organizacion;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepoOrganizaciones {
+public class RepoOrganizaciones implements WithGlobalEntityManager {
     private static RepoOrganizaciones instancia = null;
     private RepoOrganizaciones() {
         this.instancia = new RepoOrganizaciones();
@@ -27,6 +29,6 @@ public class RepoOrganizaciones {
     }
 
     public List<Organizacion> obtener() {
-        return organizaciones;
+        return entityManager().createQuery("from Organizacion").getResultList();
     }
 }

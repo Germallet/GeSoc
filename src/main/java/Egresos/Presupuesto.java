@@ -1,12 +1,22 @@
 package Egresos;
 
+import Main.IDGenerator;
 import Proveedor.Proveedor;
 import com.google.common.base.Preconditions;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
-public class Presupuesto {
+@Entity
+public class Presupuesto extends IDGenerator {
+    @OneToMany
     private List<Item> items;
+    @OneToOne
     private DocumentoComercial documentoComercial;
+    @ManyToOne
     private Proveedor proveedor;
 
    Presupuesto(Proveedor proveedor, List<Item> items, DocumentoComercial documentoComercial) {
@@ -14,6 +24,10 @@ public class Presupuesto {
         this.items = Preconditions.checkNotNull(items, "No se ingresaron items");
         this.documentoComercial = documentoComercial;
    }
+
+    public Presupuesto() {
+        super();
+    }
 
     public int valorTotal(){
         return items.stream().mapToInt(unItem -> unItem.valor()).sum();
