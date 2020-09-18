@@ -1,4 +1,4 @@
-package Persistencia;
+package db;
 
 import static org.junit.Assert.*;
 
