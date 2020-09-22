@@ -2,8 +2,12 @@ package Localizacion;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 import com.sun.jersey.api.client.*;
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.*;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.codehaus.jackson.type.TypeReference;
 
 import javax.ws.rs.core.MediaType;
@@ -66,6 +70,28 @@ public class ServicioMercadoLibre implements ServicioLocalizacion {
             List<Ciudad> ciudades = mapper.readValue(cities, new TypeReference<List<Ciudad>>(){});
             ciudades.forEach(ciudad -> ciudad.setProvincia(provincia));
             return ciudades;
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    @Override
+    public Ciudad obtenerCiudad(String id) {
+        String respuesta = obtenerStringJSON("classified_locations/cities/" + id);
+        try {
+            ObjectMapper mapper = mapper();
+            JsonNode datos = mapper.readTree(respuesta);
+
+            JsonNode datos_pais = datos.findPath("country");
+            Pais pais = new Pais(datos_pais.findValue("id").asText(), datos_pais.findValue("name").asText());
+
+            JsonNode datos_provincia = datos.findPath("state");
+            Provincia provincia = new Provincia(datos_provincia.findValue("id").asText(), datos_provincia.findValue("name").asText());
+            provincia.setPais(pais);
+
+            Ciudad ciudad = mapper.readValue(respuesta, Ciudad.class);
+            ciudad.setProvincia(provincia);
+            return ciudad;
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

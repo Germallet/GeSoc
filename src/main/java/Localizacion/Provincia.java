@@ -17,6 +17,16 @@ public class Provincia {
         return nombre;
     }
 
+    public Provincia() {}
+
+    public Provincia(String idApi, String nombre) {
+        this.idAPI = idApi;
+        this.nombre = nombre;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
     public void setPais(Pais pais) {
         this.pais = pais;
     }

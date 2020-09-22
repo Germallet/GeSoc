@@ -27,11 +27,21 @@ public class ServicioMercadoLibreTest {
 
         Mockito.doReturn(
                 "{\"id\":\"idBuenosAiresInterior\",\"name\":\"Buenos Aires Interior\"," +
-                "\"country\":{\"id\":\"AR\",\"name\":\"Argentina\"}," +
-                "\"cities\":[{\"id\":\"TUxBQzI1RDIwMzQ\",\"name\":\"25 de Mayo\"}," +
-                    "{\"id\":\"TUxBQ0FMQjYwODM\",\"name\":\"Alberti\"}," +
-                    "{\"id\":\"TUxBQ0FSUjM5OTg\",\"name\":\"Arrecifes\"}]}"
+                        "\"country\":{\"id\":\"AR\",\"name\":\"Argentina\"}," +
+                        "\"cities\":[{\"id\":\"TUxBQzI1RDIwMzQ\",\"name\":\"25 de Mayo\"}," +
+                        "{\"id\":\"TUxBQ0FMQjYwODM\",\"name\":\"Alberti\"}," +
+                        "{\"id\":\"TUxBQ0FSUjM5OTg\",\"name\":\"Arrecifes\"}]}"
         ).when(servicio).obtenerStringJSON("classified_locations/states/idBuenosAiresInterior");
+
+        Mockito.doReturn(
+                "{\"id\": \"idChivilcoy\", \"name\": \"Chivilcoy\",\n" +
+                        "\"state\": {\"id\": \"TUxBUFpPTmFpbnRl\", \"name\": \"Buenos Aires Interior\"},\n" +
+                        "\"country\": {\"id\": \"AR\", \"name\": \"Argentina\"},\n" +
+                        "\"neighborhoods\": [\n" +
+                        "{\"id\": \"TUxBQkNISTI2MTBa\", \"name\": \"Chivilcoy\"},\n" +
+                        "{\"id\": \"TUxBQkVNSTg2MzNa\", \"name\": \"Emilio Ayarza\"}\n" +
+                        "]}"
+        ).when(servicio).obtenerStringJSON("classified_locations/cities/idChivilcoy");
 
         Mockito.doReturn(
                 "[{\"id\":\"ARS\",\"symbol\":\"$\",\"description\":\"Peso argentino\",\"decimal_places\":2}," +
@@ -66,6 +76,14 @@ public class ServicioMercadoLibreTest {
 
         List<Ciudad> ciudades = servicio.obtenerCiudades(BsAsInterior);
         Assert.assertTrue(!ciudades.isEmpty());
+    }
+
+    @Test
+    public void ciudad() {
+        Ciudad chivilcoy = servicio.obtenerCiudad("idChivilcoy");
+        Assert.assertEquals("Chivilcoy", chivilcoy.getNombre());
+        Assert.assertEquals("Buenos Aires Interior", chivilcoy.getProvincia().getNombre());
+        Assert.assertEquals("Argentina", chivilcoy.getProvincia().getPais().getNombre());
     }
 
     @Test

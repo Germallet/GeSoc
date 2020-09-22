@@ -16,6 +16,13 @@ public class Pais {
         return nombre;
     }
 
+    public Pais() {}
+
+    public Pais(String idAPI, String nombre) {
+        this.idAPI = idAPI;
+        this.nombre = nombre;
+    }
+
     public List<Provincia> provincias() {
         return Localizacion.servicio().obtenerProvincias(this);
     }
