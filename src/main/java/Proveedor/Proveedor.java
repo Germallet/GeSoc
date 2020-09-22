@@ -10,9 +10,9 @@ import javax.persistence.*;
 public class Proveedor extends IDGenerator {
 
     String nombre;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Identificador identificador;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     DireccionPostal direccionPostal;
 
     public Proveedor(String nombre, Identificador identificador, DireccionPostal direccionPostal) {
@@ -21,7 +21,4 @@ public class Proveedor extends IDGenerator {
         this.direccionPostal = Preconditions.checkNotNull(direccionPostal, "No se ingreso una direccion");
     }
 
-    public Proveedor() {
-        super();
-    }
 }

@@ -11,4 +11,8 @@ import java.util.List;
 @DiscriminatorColumn(name="tipo", discriminatorType=DiscriminatorType.STRING)
 public abstract class ComportamientoPermitirEgreso extends IDGenerator {
     public abstract boolean permiteEgreso(List<Egreso> egresos, Egreso nuevoEgreso);
+
+    public ComportamientoPermitirEgreso(){
+
+    }
 }

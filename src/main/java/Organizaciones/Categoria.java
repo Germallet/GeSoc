@@ -21,6 +21,12 @@ public class Categoria extends IDGenerator {
         return permitirEgreso.permiteEgreso(egresos, nuevoEgreso);
     }
 
+    public Categoria(String nombre, boolean permiteEntidadBase, boolean puedeSerDeJuridica){
+        this.nombre = nombre;
+        this.permiteEntidadBase = permiteEntidadBase;
+        this.puedeSerDeJuridica = puedeSerDeJuridica;
+    }
+
     public boolean permiteEntidadBase() {
         return permiteEntidadBase;
     }

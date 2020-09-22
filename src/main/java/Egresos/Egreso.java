@@ -31,7 +31,7 @@ public class Egreso extends IDGenerator {
     List<Etiqueta> etiquetas = new ArrayList<>();
 
 
-    Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
+    public Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
         this.documento = documento;
         this.fecha = fecha;
         this.medioDePago = Preconditions.checkNotNull(unPago, "No se ingreso un medio de pago");
