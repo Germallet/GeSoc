@@ -48,7 +48,7 @@ public class RepoOrganizaciones implements WithGlobalEntityManager {
     public void quitarOrganizacion(long id_org) {
         transaction.begin();
         Organizacion org = entityManager().find(Organizacion.class, new Long(id_org));
-        entityManager().remove(org);
+        em.remove(org);
         transaction.commit();
     }
 
