@@ -19,7 +19,7 @@ public class Presupuesto extends IDGenerator {
     @ManyToOne
     private Proveedor proveedor;
 
-   Presupuesto(Proveedor proveedor, List<Item> items, DocumentoComercial documentoComercial) {
+   public Presupuesto(Proveedor proveedor, List<Item> items, DocumentoComercial documentoComercial) {
         this.proveedor = proveedor;
         this.items = Preconditions.checkNotNull(items, "No se ingresaron items");
         this.documentoComercial = documentoComercial;

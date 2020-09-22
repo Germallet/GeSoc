@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class Etiqueta extends IDGenerator {
     String nombre;
 
-    Etiqueta(String nombre){
+    public Etiqueta(String nombre){
         this.nombre = nombre;
     }
 
