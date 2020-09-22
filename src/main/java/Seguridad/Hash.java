@@ -22,7 +22,7 @@ public class Hash {
         }
     }
 
-    private byte[] obtenerBytes() {
+    public byte[] obtenerBytes() {
         return bytes;
     }
 
