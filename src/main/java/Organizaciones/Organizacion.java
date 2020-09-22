@@ -9,11 +9,11 @@ import java.util.List;
 public class Organizacion extends IDGenerator {
 
     private long id_org;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Entidad> entidades;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Etiqueta> etiquetas;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Categoria> categorias;
 
     public Organizacion(long id, List<Entidad> entidades, List<Etiqueta> etiquetas, List<Categoria> categorias){

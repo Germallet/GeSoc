@@ -28,11 +28,9 @@ public class RepoOrganizaciones implements WithGlobalEntityManager {
   //  private RepoOrganizaciones() { this.instancia = new RepoOrganizaciones();} tira stackOverflow cuando interactua con la db
 
     public void agregarOrganizacion(Organizacion nuevaOrganizacion) {
-        // nuevaOrganizacion viene instanciada supongo
         transaction.begin();
         em.persist(nuevaOrganizacion); // se guarda en la base de datos
         transaction.commit();
-        //organizaciones.add(nuevaOrganizacion);
     }
 
     public void agregarEgreso(Egreso egreso){

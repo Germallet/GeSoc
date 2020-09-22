@@ -23,15 +23,14 @@ public class Main {
         //System.out.println("Generando compras pendientes");
         //RepoOrganizaciones.repositorio().obtenerOrganizaciones().forEach(organizacion -> organizacion.validarEgresos());
 
-        DocumentoComercial documento = new DocumentoComercial(TipoDeDocumentoComercial.FACTURA);
-        Egreso egreso1 = new Egreso(documento, LocalDate.now(), MedioDePago.TarjetaCredito ,3,false);
-
-        Ciudad ciudad = new Ciudad();
-        DireccionPostal dir = new DireccionPostal("Belgrano", "8av0",3120, ciudad);
-        Identificador id = new Identificador(12, TipoDeID.CUIT);
-        Proveedor prov = new Proveedor("Coca cola", id, dir);
-
+        /*
         RepoOrganizaciones.repositorio().agregarProveedor(prov);
+        RepoOrganizaciones.repositorio().agregarProveedor(prov);
+        RepoOrganizaciones.repositorio().agregarProveedor(prov);
+        */
+
+
+
 
     }
 }

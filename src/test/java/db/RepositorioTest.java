@@ -30,7 +30,6 @@ public class RepositorioTest {
     List<Etiqueta> etiquetas;
     List<Categoria> categorias;
 
-
     @Before
     public void inicializarTest(){
 
@@ -44,23 +43,25 @@ public class RepositorioTest {
 
         Categoria categoria1 = new Categoria("unaCategoria", true, false);
         Categoria categoria2 = new Categoria("otraCategoria", false, true);
-        categorias.add(categoria1);
-        categorias.add(categoria2);
+        //categorias.add(categoria1);
+        //categorias.add(categoria2);
 
         entidades = new ArrayList<>();
 
-        Etiqueta etiqueta1 = new Etiqueta("Yetaspdkm");
-        Etiqueta etiqueta2 = new Etiqueta("pledaEx");
-        etiquetas.add(etiqueta1);
-        etiquetas.add(etiqueta2);
+        Etiqueta etiqueta1 = new Etiqueta("etiqueta_lacoste");
+        Etiqueta etiqueta2 = new Etiqueta("etiqueta_tommy");
+        //etiquetas.add(etiqueta1);
+        //etiquetas.add(etiqueta2);
 
+        org = new Organizacion(new Long(2),entidades, etiquetas, categorias);
     }
 
-//    @Test
-//    public void agregoUnaOrganzacion() {
-//        org = new Organizacion(new Long(1), entidades, etiquetas, categorias);
-//        RepoOrganizaciones.repositorio().agregarOrganizacion(org);
-//    }
+    @Test
+    public void agregoUnaOrganzacion() {
+        RepoOrganizaciones.repositorio().agregarOrganizacion(org);
+        List<Organizacion> organizaciones = RepoOrganizaciones.repositorio().obtenerOrganizaciones();
+        Assert.assertTrue(organizaciones.contains(org));
+    }
 
 
 }
