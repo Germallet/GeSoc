@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class DocumentoComercial extends IDGenerator {
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     TipoDeDocumentoComercial tipo;
 
     public DocumentoComercial(TipoDeDocumentoComercial tipo){

@@ -17,9 +17,10 @@ public class Egreso extends IDGenerator {
     private DocumentoComercial documento;
     private LocalDate fecha;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private MedioDePago medioDePago;
     @OneToMany
+    @JoinColumn(name="egreso_id")
     private List<Presupuesto> presupuestos = new ArrayList<>();
     @OneToOne
     private Presupuesto presupuestoElegido;
@@ -28,8 +29,7 @@ public class Egreso extends IDGenerator {
     private int presupuestosRequeridos;
     private boolean escogerMenor;
     @ManyToMany
-    List<Etiqueta> etiquetas = new ArrayList<>();
-
+    private List<Etiqueta> etiquetas = new ArrayList<>();
 
     public Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
         this.documento = documento;
@@ -73,10 +73,13 @@ public class Egreso extends IDGenerator {
        return presupuestoElegido.valorTotal();
     }
 
-    public boolean esDelUltimoMes(){
-        return this.fecha.getMonth().equals(LocalDate.now().getMonth());
-    } //todo test
+    public boolean esDelUltimoMes() {
+        return this.fecha.getYear() == LocalDate.now().getYear() && this.fecha.getMonth().equals(LocalDate.now().getMonth());
+    }
 
+    public void agregarEtiqueta(Etiqueta nuevaEtiqueta){
+        this.etiquetas.add(nuevaEtiqueta);
+    }
     public boolean tieneEtiqueta(Etiqueta unaEtiqueta){
         return this.etiquetas.contains(unaEtiqueta);
     }

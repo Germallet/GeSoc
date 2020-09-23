@@ -12,6 +12,8 @@
         <class>Organizaciones.Categoria</class>
         <class>Organizaciones.Organizacion</class>
         <class>Organizaciones.Entidad</class>
+        <class>Organizaciones.Juridica</class>
+        <class>Organizaciones.Base</class>
         <class>Organizaciones.ComportamientoPermitirEgreso.ComportamientoPermitirEgreso</class>
         <class>Organizaciones.ComportamientoPermitirEgreso.ComportamientoPermitirEgreso_MontoMaximo</class>
         <class>Organizaciones.ComportamientoPermitirEgreso.ComportamientoPermitirEgreso_Permitir</class>

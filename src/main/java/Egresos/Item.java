@@ -10,7 +10,7 @@ public class Item extends IDGenerator {
 
     String descripcion;
     int valor;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     TipoDeItem tipo;
 
     Item(String descripcion, int valor, TipoDeItem tipo){

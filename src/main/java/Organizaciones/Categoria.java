@@ -17,11 +17,13 @@ public class Categoria extends IDGenerator {
     @OneToOne
     ComportamientoPermitirEgreso permitirEgreso;
 
+    public Categoria() {}
+
     public boolean permiteEgreso(List<Egreso> egresos, Egreso nuevoEgreso) {
         return permitirEgreso.permiteEgreso(egresos, nuevoEgreso);
     }
 
-    public Categoria(String nombre, boolean permiteEntidadBase, boolean puedeSerDeJuridica){
+    public Categoria(String nombre, boolean permiteEntidadBase, boolean puedeSerDeJuridica) {
         this.nombre = nombre;
         this.permiteEntidadBase = permiteEntidadBase;
         this.puedeSerDeJuridica = puedeSerDeJuridica;

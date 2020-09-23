@@ -8,15 +8,14 @@ import javax.persistence.*;
 @Entity
 
 public class Usuario extends IDGenerator {
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     TipoDeUsuario tipo;
     String nombre;
 
-    @OneToOne
+    @Embedded
     BandejaDeMensajes bandejaDeMensajes;
 
-    @OneToOne
-    @JoinColumn(name="contrasenia_id",referencedColumnName ="id")
+    @Embedded
     Contrasenia contrasenia;
 
     public Usuario(TipoDeUsuario tipo, String nombre, Contrasenia contrasenia) {

@@ -1,17 +1,15 @@
 package Seguridad;
 
-import Main.IDGenerator;
-
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class BandejaDeMensajes extends IDGenerator {
+@Embeddable
+public class BandejaDeMensajes {
     @OneToMany
-    @JoinColumn(name="id_mensaje",referencedColumnName = "id")
+    @JoinColumn(name="id_usuario",referencedColumnName = "id")
     private List<Mensaje> mensajes = new ArrayList<>();
 
     public void recibirMensaje(Mensaje nuevoMensaje) {

@@ -1,14 +1,22 @@
 package Seguridad;
 
+import org.hibernate.annotations.Type;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.persistence.*;
 import java.security.GeneralSecurityException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
 
+@Embeddable
 public class Hash {
-
+    @Type(type = "org.hibernate.type.BlobType")
+    @Lob
+    @Column(name = "contrasenia_hash")
     public byte[] bytes;
+
+    public Hash() { }
 
     public Hash(String datos, Salt salt) {
 

@@ -8,26 +8,25 @@ import java.util.List;
 @Entity
 public class Organizacion extends IDGenerator {
 
-    private long id_org;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="organizacion_id")
     List<Entidad> entidades;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="organizacion_id")
     List<Etiqueta> etiquetas;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="organizacion_id")
     List<Categoria> categorias;
 
-    public Organizacion(long id, List<Entidad> entidades, List<Etiqueta> etiquetas, List<Categoria> categorias){
+    public Organizacion() {}
+
+    public Organizacion(List<Entidad> entidades, List<Etiqueta> etiquetas, List<Categoria> categorias){
         this.entidades = entidades;
         this.categorias = categorias;
-        this.id_org = id;
         this.etiquetas = etiquetas;
     }
 
-    public long getId(){
-        return id_org;
-    }
-
     public void validarEgresos() {
-        entidades.forEach(entidad -> entidad.validarEgresos());
+        entidades.forEach(Entidad::validarEgresos);
     }
 }
