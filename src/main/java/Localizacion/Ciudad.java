@@ -1,14 +1,10 @@
 package Localizacion;
 
 import org.codehaus.jackson.annotate.JsonProperty;
-import javax.persistence.*;
 
-@Embeddable
 public class Ciudad {
-    @JsonProperty("id") @Column(name="idCiudadAPI") private String idAPI;
-    @Transient
+    @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
-    @Transient
     private Provincia provincia;
 
     public Ciudad() {}
@@ -18,7 +14,6 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
-    public void setIdAPI(String idAPI) { this.idAPI = idAPI; }
     public String getIdAPI() {
         return idAPI;
     }

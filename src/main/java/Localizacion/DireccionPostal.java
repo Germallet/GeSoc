@@ -8,8 +8,7 @@ public class DireccionPostal extends IDGenerator {
     private String calle;
     private String piso;
     private int altura;
-    @Embedded
-    @Convert(converter = CiudadConverter.class, attributeName="idCiudadAPI")
+    @Convert(converter = CiudadConverter.class) @Column(name = "idCiudadMercadoLibreAPI")
     private Ciudad ciudad;
 
     public DireccionPostal(String calle, String piso, int altura, Ciudad ciudad) {
@@ -21,5 +20,9 @@ public class DireccionPostal extends IDGenerator {
 
     public DireccionPostal() {
         super();
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 }

@@ -7,8 +7,8 @@ public class Localizacion {
         this.servicio = new ServicioMercadoLibre();
     }
 
-    void setServicio(ServicioLocalizacion servicio) {
-        this.servicio = servicio;
+    public static void setServicio(ServicioLocalizacion nuevoServicio) {
+        servicio = nuevoServicio;
     }
 
     public static ServicioLocalizacion servicio() {
