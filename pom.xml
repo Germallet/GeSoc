@@ -41,7 +41,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main.Main</mainClass>
+                            <mainClass>Main.GeneradorComprasPendientes</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
