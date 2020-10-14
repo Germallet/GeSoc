@@ -1,15 +1,10 @@
 package Egresos;
 
 import Localizacion.DireccionPostal;
-import Localizacion.Pais;
-import Organizaciones.Organizacion;
-import Proveedor.Proveedor;
-import Proveedor.Identificador;
-import Proveedor.TipoDeID;
+import Proveedor.*;
 import org.junit.*;
-import org.mockito.Mockito;
-
 import java.util.*;
+import org.mockito.Mockito;
 import java.time.LocalDate;
 
 import static Proveedor.TipoDeID.DNI;

@@ -1,9 +1,8 @@
 package Organizaciones;
-import Main.IDGenerator;
 
+import Main.IDGenerator;
 import javax.persistence.*;
 import java.util.List;
-
 
 @Entity
 public class Organizacion extends IDGenerator {

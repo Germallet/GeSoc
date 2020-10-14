@@ -2,12 +2,9 @@ package Localizacion;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-
 import com.sun.jersey.api.client.*;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.codehaus.jackson.type.TypeReference;
 
 import javax.ws.rs.core.MediaType;

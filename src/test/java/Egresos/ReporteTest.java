@@ -2,10 +2,8 @@ package Egresos;
 
 import Organizaciones.Etiqueta;
 import org.junit.*;
-
+import java.util.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReporteTest {
 
