@@ -13,19 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
-    Organizacion organizacion;
-
-    @Before
-    public void inicializarTest(){
-        organizacion = new Organizacion(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        entityManager().clear();
-    }
 
     @Test
     public void agregoUnaOrganzacion() {
-        EntityTransaction transaction = entityManager().getTransaction();
+        Organizacion organizacion = new Organizacion(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         RepoOrganizaciones.repositorio().agregarOrganizacion(organizacion);
-        transaction.commit();
 
         List<Organizacion> organizaciones = RepoOrganizaciones.repositorio().obtenerOrganizaciones();
         Assert.assertTrue(organizaciones.contains(organizacion));
@@ -33,17 +25,21 @@ public class RepositorioTest extends AbstractPersistenceTest implements WithGlob
 
     @Test
     public void obtengoLasOrganizaciones() {
+        Organizacion organizacion = new Organizacion(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        RepoOrganizaciones.repositorio().agregarOrganizacion(organizacion);
+
         List<Organizacion> organizaciones = RepoOrganizaciones.repositorio().obtenerOrganizaciones();
-        Assert.assertTrue(organizaciones.size() != 0);
+        Assert.assertTrue(organizaciones.size() == 1);
+        Assert.assertTrue(organizaciones.stream().findFirst().get() == organizacion);
     }
 
     @Test
     public void borroUnaOrganizacion() {
-        EntityTransaction transaction = entityManager().getTransaction();
+        Organizacion organizacion = new Organizacion(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        RepoOrganizaciones.repositorio().agregarOrganizacion(organizacion);
         RepoOrganizaciones.repositorio().quitarOrganizacion(organizacion);
-        transaction.commit();
 
         List<Organizacion> organizaciones = RepoOrganizaciones.repositorio().obtenerOrganizaciones();
-        Assert.assertTrue(!organizaciones.contains(organizacion));
+        Assert.assertTrue(organizaciones.isEmpty());
     }
 }
