@@ -2,15 +2,10 @@ package db;
 
 import Main.RepoOrganizaciones;
 import Organizaciones.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import java.util.*;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-
-import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RepositorioTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
