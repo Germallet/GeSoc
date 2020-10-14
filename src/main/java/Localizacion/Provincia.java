@@ -1,13 +1,16 @@
 package Localizacion;
 
+import Main.IDGenerator;
 import org.codehaus.jackson.annotate.JsonProperty;
-
+import javax.persistence.*;
 import java.util.List;
 
-public class Provincia {
+@Entity
+public class Provincia extends IDGenerator {
     @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
-    private Pais pais;
+    @ManyToOne
+    Pais pais;
 
     public void setIdAPI(String idAPI) { this.idAPI = idAPI; }
     public String getIdAPI() {

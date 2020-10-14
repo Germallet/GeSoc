@@ -8,7 +8,7 @@ public class DireccionPostal extends IDGenerator {
     private String calle;
     private String piso;
     private int altura;
-    @Convert(converter = CiudadConverter.class) @Column(name = "idCiudadMercadoLibreAPI")
+    @ManyToOne
     private Ciudad ciudad;
 
     public DireccionPostal(String calle, String piso, int altura, Ciudad ciudad) {

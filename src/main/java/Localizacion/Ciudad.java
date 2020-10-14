@@ -1,11 +1,15 @@
 package Localizacion;
 
+import Main.IDGenerator;
 import org.codehaus.jackson.annotate.JsonProperty;
+import javax.persistence.*;
 
-public class Ciudad {
+@Entity
+public class Ciudad extends IDGenerator {
     @JsonProperty("id") private String idAPI;
     @JsonProperty("name") private String nombre;
-    private Provincia provincia;
+    @ManyToOne
+    Provincia provincia;
 
     public Ciudad() {}
 

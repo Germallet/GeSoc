@@ -24,6 +24,9 @@
         <class>Egresos.Egreso</class>
 
         <class>Localizacion.DireccionPostal</class>
+        <class>Localizacion.Pais</class>
+        <class>Localizacion.Provincia</class>
+        <class>Localizacion.Ciudad</class>
 
         <class>Proveedor.Identificador</class>
         <class>Proveedor.Proveedor</class>
@@ -33,9 +36,8 @@
         <class>Seguridad.Usuario</class>
 
         <properties> 
-	    <property name="hibernate.archive.autodetection" value="class"/>        
+	    <property name="hibernate.archive.autodetection" value="class"/>
 
-            <!-- este es para conectarte localmente /-->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gesoc?serverTimezone=UTC" />
             <property name="hibernate.connection.username" value="root" /> 
