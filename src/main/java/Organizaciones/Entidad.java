@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class Entidad extends IDGenerator {
 
     @OneToMany
+    @JoinColumn(name="entidad_id")
     protected List<Egreso> egresos;
     @ManyToOne
     Categoria categoria;

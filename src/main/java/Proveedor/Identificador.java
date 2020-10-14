@@ -1,13 +1,13 @@
 package Proveedor;
 
-import Main.IDGenerator;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
-@Entity
-public class Identificador extends IDGenerator {
+@Embeddable
+public class Identificador {
+    @Column(name="numeroIdentificador")
     int numero;
     @Enumerated
+    @Column(name="tipoIdentificador")
     TipoDeID tipo;
 
     public Identificador(int numero, TipoDeID tipo){

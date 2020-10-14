@@ -23,12 +23,10 @@
         <class>Egresos.Presupuesto</class>
         <class>Egresos.Egreso</class>
 
-        <class>Localizacion.DireccionPostal</class>
         <class>Localizacion.Pais</class>
         <class>Localizacion.Provincia</class>
         <class>Localizacion.Ciudad</class>
 
-        <class>Proveedor.Identificador</class>
         <class>Proveedor.Proveedor</class>
 
         <class>Seguridad.Mensaje</class>

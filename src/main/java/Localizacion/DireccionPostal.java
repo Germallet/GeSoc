@@ -1,15 +1,14 @@
 package Localizacion;
 
-import Main.IDGenerator;
 import javax.persistence.*;
 
-@Entity
-public class DireccionPostal extends IDGenerator {
-    private String calle;
-    private String piso;
-    private int altura;
+@Embeddable
+public class DireccionPostal {
+    @Column(name="direccion_calle") private String calle;
+    @Column(name="direccion_piso") private String piso;
+    @Column(name="direccion_altura") private int altura;
     @ManyToOne
-    private Ciudad ciudad;
+    @JoinColumn(name="direccion_ciudad") private Ciudad ciudad;
 
     public DireccionPostal(String calle, String piso, int altura, Ciudad ciudad) {
         this.calle = calle;
