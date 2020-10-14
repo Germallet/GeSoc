@@ -9,7 +9,7 @@ public class ContraseniaTest {
 
     @Before
     public void inicializarTest() {
-        contrasenia = new Contrasenia("ContraseniaValida", new ArrayList());
+        contrasenia = new Contrasenia("ContraseniaValida", new ArrayList<>());
     }
 
     @Test
@@ -24,13 +24,13 @@ public class ContraseniaTest {
 
     @Test
     public void contraseniaCumpleMultiplesVerifidores() {
-        Collection validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
+        Collection<ValidadorDeContrasenia> validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
         new Contrasenia("ContraseniaValida$", validadores);
     }
 
     @Test
     public void contraseniaNoCumpleMultiplesVerifidores() {
-        Collection validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
+        Collection<ValidadorDeContrasenia> validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
         Assert.assertThrows(IllegalArgumentException.class, () ->
                 new Contrasenia("ContraseniaInvalida", validadores)
         );

@@ -30,6 +30,6 @@ public class RepoOrganizaciones implements WithGlobalEntityManager {
     }
 
     public List<Organizacion> obtenerOrganizaciones(){
-        return entityManager().createQuery("from Organizacion").getResultList();
+        return entityManager().createQuery("from Organizacion", Organizacion.class).getResultList();
     }
 }
