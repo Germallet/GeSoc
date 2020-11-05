@@ -80,11 +80,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-client</artifactId>
             <version>1.8</version>
@@ -99,7 +94,6 @@
             <artifactId>jpa-java8-extras</artifactId>
             <version>1.0-alpha-1</version>
         </dependency>
-        <!-- Modificar tag version “X.X.X” según corresponda. MySQL 5.X: 5.1.28,  MySQL 8.X: 8.0.13  -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -109,6 +103,11 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
         </dependency>
         <dependency>
             <groupId>com.sparkjava</groupId>
@@ -126,14 +125,19 @@
             <version>0.5</version>
         </dependency>
         <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>6.1.25</version>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars-helpers</artifactId>
+            <version>4.0.6</version>
         </dependency>
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars-humanize</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.6-jre</version>
         </dependency>
     </dependencies>
 </project>

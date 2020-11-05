@@ -1,12 +1,21 @@
 package Server;
 
-
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+import Server.utils.*;
 
-public class Router { //un router configura todas las ruutas
-
+public class Router {
     public static void configure() {
-            Spark.get("/", ControllerHome::index);
-    }
+        HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
+                .create()
+                .withDefaultHelpers()
+                .withHelper("isTrue", BooleanHelper.isTrue)
+                .build();
 
+        Spark.before((req, res) -> PerThreadEntityManagers.getEntityManager());
+        Spark.after((req, res) -> PerThreadEntityManagers.closeEntityManager());
+
+        Spark.get("/", HomeController::home, engine);
+    }
 }
