@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 @Embeddable
 public class Hash {
-    @Type(type = "org.hibernate.type.BlobType")
     @Lob
     @Column(name = "contrasenia_hash")
     public byte[] bytes;

@@ -1,0 +1,10 @@
+{{#partial "contenido"}}
+    <h2>Registrarse</h2>
+    <form method="POST" action="/signup">
+        <div> Usuario <input type="text" name="username"/></div>
+        <div> Contraseña <input type="text" name="password"/></div>
+        <input type="submit" value="Registrarse">
+    </form>
+{{/partial}}
+
+{{>layout.hbs}}

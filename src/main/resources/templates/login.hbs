@@ -1,0 +1,10 @@
+{{#partial "contenido"}}
+    <h2>Inicio de Sesión</h2>
+    <form method="POST" action="/login">
+        <div> Usuario <input type="text" name="username"/></div>
+        <div> Contraseña <input type="text" name="password"/></div>
+        <input type="submit" value="Iniciar sesión">
+    </form>
+{{/partial}}
+
+{{>layout.hbs}}

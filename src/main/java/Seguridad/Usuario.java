@@ -6,7 +6,6 @@ import com.google.common.base.Preconditions;
 import javax.persistence.*;
 
 @Entity
-
 public class Usuario extends IDGenerator {
     @Enumerated(EnumType.ORDINAL)
     TipoDeUsuario tipo;
@@ -28,6 +27,12 @@ public class Usuario extends IDGenerator {
     public Usuario() {
         super();
     }
+
+    public boolean validarLogin(String username, String password) {
+        return nombre.equals(username) && contrasenia.esIgualA(password);
+    }
+
+    public String getNombre() { return nombre; }
 
     public BandejaDeMensajes getBandejaDeMensajes() { return bandejaDeMensajes; }
 }
