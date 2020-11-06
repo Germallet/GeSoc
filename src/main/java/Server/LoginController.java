@@ -5,7 +5,7 @@ import Seguridad.Usuario;
 import spark.*;
 import java.util.Optional;
 
-public class LogInController {
+public class LoginController {
     public static ModelAndView show(Request req, Response res) {
         if (req.session().attribute("usuario") == null)
             return new ModelAndView(null, "logIn.hbs");
@@ -15,7 +15,7 @@ public class LogInController {
         }
     }
 
-    public static ModelAndView logIn(Request req, Response res) {
+    public static ModelAndView login(Request req, Response res) {
         String username = req.queryParams("username");
         String password = req.queryParams("password");
 

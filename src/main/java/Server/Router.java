@@ -20,10 +20,10 @@ public class Router {
 
         Spark.get("/", HomeController::show, engine);
 
-        Spark.get("/login", LogInController::show, engine);
-        Spark.post("/login", LogInController::logIn, engine);
+        Spark.get("/login", LoginController::show, engine);
+        Spark.post("/login", LoginController::login, engine);
 
-        Spark.get("/logout", LogOutController::logOut, engine);
+        Spark.get("/logout", LogoutController::logout, engine);
 
         SignUpController signUpController = new SignUpController();
         Spark.get("/signup", signUpController::show, engine);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class SignUpController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
     public ModelAndView show(Request req, Response res){
-        return new ModelAndView(null, "signUp.hbs");
+        return new ModelAndView(null, "signup.hbs");
     }
 
     public ModelAndView signUp(Request req, Response res) {
