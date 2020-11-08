@@ -1,9 +1,19 @@
 {{#partial "contenido"}}
     <h2>Registrarse</h2>
     <form method="POST" action="/signup">
-        <div> Usuario <input type="text" name="username"/></div>
-        <div> Contraseña <input type="text" name="password"/></div>
-        <input type="submit" value="Registrarse">
+        <div class="form-group">
+            <input id="username" type="text" class="form-control" placeholder="Usuario" name="username" value="{{username}}">
+            {{#if usernameError}}
+                <small class="form-text text-danger">{{usernameError}}</small>
+            {{/if}}
+        </div>
+        <div class="form-group">
+            <input id="password" type="password" class="form-control" placeholder="Contraseña" name="password">
+            {{#if passwordError}}
+                <small class="form-text text-danger">{{passwordError}}</small>
+            {{/if}}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Registrarse">
     </form>
 {{/partial}}
 

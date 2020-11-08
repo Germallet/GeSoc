@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class ValidadorDeContrasenia_TieneCaracterEspecial implements ValidadorDeContrasenia {
     @Override
     public void validar(String contrasenia) {
-        Preconditions.checkArgument(Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia), new IllegalArgumentException("La contraseña no tiene un caracter especial"));
+        if(!Pattern.matches("^(?=.*[@#$%^&+=]).*$", contrasenia))
+            throw new PasswordException("La contraseña no tiene un caracter especial");
     }
 }

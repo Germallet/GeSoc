@@ -10,6 +10,7 @@ public class ValidadorDeContrasenia_Longitud implements ValidadorDeContrasenia {
 
     @Override
     public void validar(String contrasenia) {
-        Preconditions.checkArgument(contrasenia.length() >= tamanioMinimo, new IllegalArgumentException("Contraseña demasiado corta"));
+        if (contrasenia.length() < tamanioMinimo)
+            throw new PasswordException("Contraseña demasiado corta");
     }
 }

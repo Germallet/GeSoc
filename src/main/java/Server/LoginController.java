@@ -3,6 +3,9 @@ package Server;
 import Main.RepoUsuarios;
 import Seguridad.Usuario;
 import spark.*;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class LoginController {
@@ -26,7 +29,12 @@ public class LoginController {
             res.redirect("/");
         }
         else
-            res.redirect("/no");
+        {
+            Map<String, Object> model = new HashMap<>();
+            model.put("username", username);
+            model.put("loginError", true);
+            return new ModelAndView(model, "login.hbs");
+        }
 
         return null;
     }

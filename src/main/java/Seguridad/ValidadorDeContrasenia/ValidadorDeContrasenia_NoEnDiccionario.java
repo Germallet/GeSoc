@@ -14,6 +14,7 @@ public class ValidadorDeContrasenia_NoEnDiccionario implements ValidadorDeContra
     @Override
     public void validar(String contrasenia) {
         Diccionario diezMilMasComunes = new Diccionario(nombreArchivoDiccionario);
-        Preconditions.checkArgument(!diezMilMasComunes.contiene(contrasenia), new IllegalArgumentException("Contraseña demasiado común"));
+        if(diezMilMasComunes.contiene(contrasenia))
+            throw new PasswordException("Contraseña demasiado común");
     }
 }

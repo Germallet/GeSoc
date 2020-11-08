@@ -2,10 +2,12 @@ package Server;
 
 import Main.RepoUsuarios;
 import Seguridad.*;
+import Seguridad.ValidadorDeContrasenia.*;
 import org.uqbarproject.jpa.java8.extras.*;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.*;
-import java.util.ArrayList;
+
+import java.util.*;
 
 public class SignUpController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
     public ModelAndView show(Request req, Response res){
@@ -16,11 +18,27 @@ public class SignUpController implements WithGlobalEntityManager, EntityManagerO
         String username = req.queryParams("username");
         String password = req.queryParams("password");
 
-        Usuario nuevoUsuario = new Usuario(TipoDeUsuario.ESTANDAR, username, new Contrasenia(password, new ArrayList<>()));
+        Contrasenia contrasenia;
+        try {
+            contrasenia = new Contrasenia(password, Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_NoEnDiccionario("10k-most-common.txt"), new ValidadorDeContrasenia_TieneCaracterEspecial()));
+        } catch (PasswordException e) {
+            Map<String, Object> model = new HashMap<>();
+            model.put("username", username);
+            model.put("passwordError", e.getMessage());
+            return new ModelAndView(model, "signup.hbs");
+        }
+
+        if (RepoUsuarios.repositorio().obtenerUsuarios().stream().anyMatch(u -> u.getNombre().equals(username)))
+        {
+            Map<String, Object> model = new HashMap<>();
+            model.put("username", username);
+            model.put("usernameError", "Nombre de usuario en uso");
+            return new ModelAndView(model, "signup.hbs");
+        }
+
+        Usuario nuevoUsuario = new Usuario(TipoDeUsuario.ESTANDAR, username, contrasenia);
         withTransaction(() -> RepoUsuarios.repositorio().agregarUsuario(nuevoUsuario));
-
-        res.redirect("/");
-
+        res.redirect("/login");
         return null;
     }
 }
