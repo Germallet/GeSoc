@@ -14,19 +14,15 @@ public class SignUpController implements WithGlobalEntityManager, EntityManagerO
         return new ModelAndView(null, "signup.hbs");
     }
 
-    public ModelAndView signUp(Request req, Response res) {
+    public ModelAndView signUp(Request req, Response res) throws PasswordException {
         String username = req.queryParams("username");
         String password = req.queryParams("password");
 
         Contrasenia contrasenia;
-        try {
-            contrasenia = new Contrasenia(password, Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_NoEnDiccionario("10k-most-common.txt"), new ValidadorDeContrasenia_TieneCaracterEspecial()));
-        } catch (PasswordException e) {
-            Map<String, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("passwordError", e.getMessage());
-            return new ModelAndView(model, "signup.hbs");
-        }
+        contrasenia = new Contrasenia(password,
+                Arrays.asList(new ValidadorDeContrasenia_Longitud(5),
+                              new ValidadorDeContrasenia_NoEnDiccionario("10k-most-common.txt"),
+                              new ValidadorDeContrasenia_TieneCaracterEspecial()));
 
         if (RepoUsuarios.repositorio().obtenerUsuarios().stream().anyMatch(u -> u.getNombre().equals(username)))
         {

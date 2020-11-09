@@ -1,5 +1,5 @@
 package Egresos;
 
-enum TipoDeItem {
+public enum TipoDeItem {
     PRODUCTO, SERVICIO
 }

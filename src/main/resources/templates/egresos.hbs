@@ -1,0 +1,24 @@
+{{#partial "contenido"}}
+    <h1>Egresos </h1>
+
+    <table class="table table/stripped">
+        <tr>
+            <th>Nombre</th> <!-- tiene que estar el getter -->
+            <th>Fecha</th>
+            <th>Medio de Pago</th>
+            <th></th>
+        </tr>
+
+        {{#each egresos}}
+        <tr>
+            <td>{{nombre}}</td>
+            <td>{{fecha}}</td>
+            <td>{{medioDePago}}</td>
+            <td><a href="{{url}}">Ver</a></td>
+        </tr>
+    {{/each}}
+    </table>
+    <a class="btn btn-primary" role="button" href="egresos/add">Agregar Egreso</a>
+{{/partial}}
+
+{{>layout.hbs}}
