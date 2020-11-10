@@ -57,6 +57,24 @@
                             <finalName>ImportarLocalizacionML</finalName>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>build-c</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>Server.Server</mainClass>
+                                </manifest>
+                            </archive>
+                            <finalName>Servidor</finalName>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

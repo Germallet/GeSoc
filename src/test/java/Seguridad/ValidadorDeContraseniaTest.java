@@ -26,7 +26,7 @@ public class ValidadorDeContraseniaTest {
     @Test
     public void validadorNoEnDiccinoario_InorrectoSiContiene() {
         ValidadorDeContrasenia_NoEnDiccionario validador = new ValidadorDeContrasenia_NoEnDiccionario("DiccionarioTest.txt");
-        Assert.assertThrows(IllegalArgumentException.class, () -> validador.validar("123"));
+        Assert.assertThrows(PasswordException.class, () -> validador.validar("123"));
     }
 
     @Test
@@ -38,6 +38,6 @@ public class ValidadorDeContraseniaTest {
     @Test
     public void validadorTieneCaracterEspecial_InorrectoSiNoTiene() {
         ValidadorDeContrasenia_TieneCaracterEspecial validador = new ValidadorDeContrasenia_TieneCaracterEspecial();
-        Assert.assertThrows(IllegalArgumentException.class, () -> validador.validar("SinCaracterEspecial"));
+        Assert.assertThrows(PasswordException.class, () -> validador.validar("SinCaracterEspecial"));
     }
 }

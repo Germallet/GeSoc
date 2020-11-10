@@ -31,7 +31,7 @@ public class ContraseniaTest {
     @Test
     public void contraseniaNoCumpleMultiplesVerifidores() {
         Collection<ValidadorDeContrasenia> validadores = Arrays.asList(new ValidadorDeContrasenia_Longitud(5), new ValidadorDeContrasenia_TieneCaracterEspecial());
-        Assert.assertThrows(IllegalArgumentException.class, () ->
+        Assert.assertThrows(PasswordException.class, () ->
                 new Contrasenia("ContraseniaInvalida", validadores)
         );
     }
