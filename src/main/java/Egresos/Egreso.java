@@ -31,6 +31,7 @@ public class Egreso extends IDGenerator {
     @ManyToMany
     private List<Etiqueta> etiquetas = new ArrayList<>();
 
+
     public Egreso(DocumentoComercial documento, LocalDate fecha, MedioDePago unPago, int presupuestosRequeridos, boolean escogerMenor) {
         this.documento = documento;
         this.fecha = fecha;
@@ -82,5 +83,25 @@ public class Egreso extends IDGenerator {
     }
     public boolean tieneEtiqueta(Etiqueta unaEtiqueta){
         return this.etiquetas.contains(unaEtiqueta);
+    }
+
+    public Long getId(){
+        return this.id;
+    }
+
+    public String getUrl(){
+        return "egresos/" + getId();
+    }
+
+    public int getValorTotal(){
+        return this.valorTotal();
+    }
+
+    public boolean getEsDelUltimoMes(){
+        return this.esDelUltimoMes();
+    }
+
+    public boolean getEsValido(){
+        return this.esValido();
     }
 }

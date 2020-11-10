@@ -22,4 +22,8 @@ public class RepoEgresos implements WithGlobalEntityManager {
     public List<Egreso> obtenerEgresos(){
         return entityManager().createQuery("from Egreso", Egreso.class).getResultList();
     }
+
+    public Egreso obtenerEgreso(Long id){
+        return entityManager().find(Egreso.class, id);
+    }
 }

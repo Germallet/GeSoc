@@ -6,5 +6,5 @@ import javax.persistence.*;
 public class IDGenerator {
     @Id
     @GeneratedValue
-    private long id;
+    public long id; //tuve que cambiar esto para poder hacerle los getId para las rutas al egreso
 }
