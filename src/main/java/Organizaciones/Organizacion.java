@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Organizacion extends IDGenerator {
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="organizacion_id")
     List<Entidad> entidades = new ArrayList<>();
     @OneToMany(cascade = CascadeType.PERSIST)

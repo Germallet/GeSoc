@@ -7,12 +7,12 @@
             <th>Categoría</th>
             <th></th>
         </tr>
-        {{#each entidades as entidad}}
+        {{#each entidades}}
             <tr>
                 <td>{{nombreFicticio}}</td>
                 <td>{{tipo}}</td>
                 <td>{{#if categoria}}{{categoria.nombre}}{{else}}Ninguna{{/if}}</td>
-                <td><a href="/entidades/{{id}}">Ver</a></td>
+                <td><a href="/entidades/{{id}}">Más</a></td>
             </tr>
         {{/each}}
     </table>

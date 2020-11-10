@@ -27,4 +27,7 @@ public class Base extends Entidad {
     }
 
     public String getTipo() { return "Base"; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

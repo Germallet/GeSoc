@@ -1,0 +1,18 @@
+{{#partial "contenido"}}
+    <h1>Categorías</h1>
+    <table class="table table/stripped">
+        <tr>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+        {{#each categorias}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td><form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-danger" type="submit" value="X"></form></td>
+            </tr>
+        {{/each}}
+    </table>
+    <form method="POST" action="/categorias/new"><input class="btn btn-primary" type="submit" value="Crear Categoría"></form></td>
+{{/partial}}
+
+{{>layout.hbs}}

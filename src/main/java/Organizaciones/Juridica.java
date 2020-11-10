@@ -32,4 +32,11 @@ public class Juridica extends Entidad {
     }
 
     public String getTipo() { return "Jurídica"; }
+
+    public String getRazonSocial() { return razonSocial; }
+    public void setRazonSocial(String razonSocial)  { this.razonSocial = razonSocial; }
+    public int getCUIT() { return CUIT; }
+    public void setCUIT(int CUIT)  { this.CUIT = CUIT; }
+    public int getDireccionPostal() { return direccionPostal; }
+    public void setDireccionPostal(int direccionPostal)  { this.direccionPostal = direccionPostal; }
 }

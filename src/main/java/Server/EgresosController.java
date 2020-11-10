@@ -27,7 +27,7 @@ public class EgresosController {
     }
 
 
-    public void add(Request req, Response res) {
+    public static ModelAndView crear(Request req, Response res) {
 
         DocumentoComercial doc;
         LocalDate fecha;
@@ -39,7 +39,7 @@ public class EgresosController {
         model.put("medio de pago", req.queryParams("medio_pago"));
         model.put("fecha", req.queryParams("fecha_egreso"));
         RepoEgresos.repositorio().agregarEgreso(egreso);
-
+        return null;
     }
 }
 

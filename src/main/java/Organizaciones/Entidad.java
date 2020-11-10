@@ -29,11 +29,14 @@ public abstract class Entidad extends IDGenerator {
     }
 
     public void agregarEgreso(Egreso nuevoEgreso) {
-        Preconditions.checkArgument(categoria.permiteEgreso(egresos, nuevoEgreso));
+        if (categoria != null)
+            Preconditions.checkArgument(categoria.permiteEgreso(egresos, nuevoEgreso));
         egresos.add(nuevoEgreso);
     }
 
     public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
     public String getNombreFicticio() { return nombreFicticio; }
+    public void setNombreFicticio(String nombreFicticio) { this.nombreFicticio = nombreFicticio; }
     public abstract String getTipo();
 }
