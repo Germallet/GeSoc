@@ -1,8 +1,8 @@
 package Seguridad;
 
 import Main.IDGenerator;
+import Organizaciones.Organizacion;
 import com.google.common.base.Preconditions;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,11 +17,15 @@ public class Usuario extends IDGenerator {
     @Embedded
     Contrasenia contrasenia;
 
+    @OneToOne
+    Organizacion organizacion;
+
     public Usuario(TipoDeUsuario tipo, String nombre, Contrasenia contrasenia) {
         Preconditions.checkArgument(!nombre.isEmpty(), new IllegalArgumentException("Nombre de usuario vacío"));
         this.tipo = tipo;
         this.nombre = nombre;
         this.contrasenia = contrasenia;
+        this.organizacion = new Organizacion();
     }
 
     public Usuario() {
@@ -33,6 +37,8 @@ public class Usuario extends IDGenerator {
     }
 
     public String getNombre() { return nombre; }
+
+    public Organizacion getOrganizacion() { return organizacion; }
 
     public BandejaDeMensajes getBandejaDeMensajes() { return bandejaDeMensajes; }
 }

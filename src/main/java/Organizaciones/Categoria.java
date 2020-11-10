@@ -36,4 +36,6 @@ public class Categoria extends IDGenerator {
     public boolean puedeSerDeJuridica() {
         return puedeSerDeJuridica;
     }
+
+    public String getNombre() { return nombre; }
 }
