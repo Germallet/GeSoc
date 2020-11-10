@@ -31,6 +31,8 @@ public class Router {
 
         Spark.get("/about", AboutController::show, engine);
 
+        Spark.get("/entidades", EntidadesController::show, engine);
+
         Spark.get("/egresos", EgresosController::show, engine);
         //Spark.post("/egresos/add", EgresosController::add, engine);
     }
