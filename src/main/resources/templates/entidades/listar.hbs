@@ -3,9 +3,16 @@
     <br>
     <form method="GET" action="/entidades" class="form-inline">
         <br>
-        <label>Buscar por categoría</label>
+        <label>Buscar por categoría:</label>
         <br>
-        <input id="categoria" name="categoria" type="text" class="mx-2" value="{{busqueda}}">
+        &ensp;
+        <select id="categoria" name="categoria" class="form-control custom-select">
+            <option selected value="">Todas</option>
+            {{#each usuario.organizacion.categorias}}
+                <option value="{{nombre}}">{{nombre}}</option>
+            {{/each}}
+        </select>
+        &ensp;
         <input class="btn btn-sm btn-primary" type="submit" value="Buscar">
     </form>
     <br>
@@ -22,7 +29,7 @@
                 <td>{{tipo}}</td>
                 <td>{{#if categoria}}{{categoria.nombre}}{{else}}Ninguna{{/if}}</td>
                 <td><a href="/entidades/{{id}}/egresos">Egresos</a></td>
-                <td><a href="/entidades/{{id}}">Más</a></td>
+                <td><a href="/entidades/{{id}}">Editar</a></td>
             </tr>
         {{/each}}
     </table>
