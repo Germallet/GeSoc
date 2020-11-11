@@ -3,9 +3,10 @@
 
     <table class="table table/stripped">
         <tr>
-            <th>Nombre</th> <!-- tiene que estar el getter -->
+            <th>Nombre</th>
             <th>Fecha</th>
             <th>Medio de Pago</th>
+            <th>Es del ultimo mes</th>
             <th></th>
         </tr>
 
@@ -14,11 +15,12 @@
             <td>{{nombre}}</td>
             <td>{{fecha}}</td>
             <td>{{medioDePago}}</td>
-            <td><a href="{{url}}">Ver</a></td>
+            <td>{{isTrue esDelUltimoMes}}</td>
+            <td><a href="/egresos/{{id}}">Ver</a></td>
         </tr>
     {{/each}}
     </table>
-    <a class="btn btn-primary" role="button" href="egresos/add">Agregar Egreso</a>
+    <a class="btn btn-primary" role="button" href="/egresos/new">Agregar Egreso</a>
 {{/partial}}
 
 {{>layout.hbs}}

@@ -65,4 +65,24 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
         res.redirect("/categorias");
         return null;
     }
+
+    public ModelAndView editar(Request req, Response res) {
+        Usuario usuario = req.session().attribute("usuario");
+        if (usuario == null) {
+            res.redirect("/login");
+            return null;
+        }
+
+        Optional<Categoria> categoria = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.toString(cat.getId()).equals(req.params("id"))).findAny();
+        if (categoria.isPresent())
+        {
+            withTransaction(() -> {
+               categoria.get().setNombre(req.queryParams("nombre"));
+               merge(categoria.get());
+            });
+        }
+
+        res.redirect("/categorias");
+        return null;
+    }
 }

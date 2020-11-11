@@ -29,15 +29,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label>Dirección Postal</label>
-            <div class="form-group">
-                <input id="direccionPostal" type="number" class="form-control" placeholder="Dirección Postal" name="direccionPostal" value="{{entidad.direccionPostal}}">
-            </div>
-        </div>
-        <div class="form-group">
             <label>Categoría</label>
             <select id="categoria" name="categoria" class="form-control custom-select">
-                <option selected>Ninguna</option>
+                <option>Ninguna</option>
                 {{#each usuario.organizacion.categorias}}
                     <option value="{{id}}">{{nombre}}</option>
                 {{/each}}

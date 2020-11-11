@@ -1,13 +1,18 @@
 {{#partial "contenido"}}
     <h1>Categorías</h1>
-    <table class="table table/stripped">
+    <table class="table">
         <tr>
             <th>Nombre</th>
             <th></th>
         </tr>
         {{#each categorias}}
             <tr>
-                <td>{{nombre}}</td>
+                <td>
+                    <form method="POST" action="/categorias/{{id}}" class="my-0" style="display: flex;">
+                        <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Nombre de Categoría" value="{{nombre}}">
+                        <input class="btn btn-sm btn-success" type="submit" value="✓"></form>
+                    </form>
+                </td>
                 <td><form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-danger" type="submit" value="X"></form></td>
             </tr>
         {{/each}}
