@@ -19,7 +19,7 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
         Map<String, Object> model = new HashMap<>();
         model.put("usuario", usuario);
         model.put("categorias", usuario.getOrganizacion().getCategorias());
-        return new ModelAndView(model, "categorias.hbs");
+        return new ModelAndView(model, "categorias/categorias.hbs");
     }
 
     public ModelAndView crear(Request req, Response res) {

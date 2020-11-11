@@ -8,6 +8,7 @@ public class HomeController {
         Map<String, Object> model = new HashMap<>();
         model.put("inicio", true);
         model.put("usuario", req.session().attribute("usuario"));
+        model.put("username", req.session().attribute("usuario"));
         return new ModelAndView(model, "index.hbs");
     }
 }

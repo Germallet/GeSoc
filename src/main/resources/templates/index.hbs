@@ -1,6 +1,6 @@
 {{#partial "contenido"}}
     <div class="text-center">
-        <h1>Bienvenido a GeSoc!</h1>
+        <h1>Bienvenido a GeSoc! {{usuario.nombre}}</h1>
         <h4>SaaS por el grupo 10</h4>
         <br>
         <img src="Fondo.jpg" class="rounded" alt="Responsive image">
@@ -15,6 +15,14 @@
             <br>
             <h4>¿No tienes una cuenta?</h4>
             <a class="btn btn-lg btn-success" href="/signup">Regístrate Gratis!</a>
+
+        {{else}}
+            <br>
+            <br>
+            <br>
+            <br>
+            <a class="btn btn-lg btn-primary" href="/entidades">Gestiona tus Entidades</a>
+            <a class="btn btn-lg btn-secondary" href="/categorias">Gestiona tus Categorias</a>
         {{/unless}}
     </div>
 {{/partial}}
