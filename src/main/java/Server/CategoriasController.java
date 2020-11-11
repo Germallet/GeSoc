@@ -32,7 +32,8 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
         withTransaction(() -> {
             ComportamientoPermitirEgreso comportamientoPermitirEgreso = new ComportamientoPermitirEgreso_Permitir();
             persist(comportamientoPermitirEgreso);
-            Categoria nuevaCategoria = new Categoria("Nueva Categoría", true, true, comportamientoPermitirEgreso);
+            Categoria nuevaCategoria = new Categoria("Nueva Categoría", Boolean.parseBoolean(req.params("permiteEntidadBase")),
+                                           Boolean.parseBoolean(req.params("puedeSerJuridica")), comportamientoPermitirEgreso);
             usuario.getOrganizacion().getCategorias().add(nuevaCategoria);
             persist(nuevaCategoria);
             merge(usuario.getOrganizacion());
