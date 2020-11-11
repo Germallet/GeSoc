@@ -40,7 +40,7 @@ public class EgresoTest {
         egreso.agregarPresupuesto(presupuestoA);
         egreso.elegirPresupuesto(presupuestoA);
 
-        Assert.assertEquals(false, egreso.esValido());
+        Assert.assertEquals(false, egreso.getEsValido());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class EgresoTest {
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoA);
 
-        Assert.assertEquals(true, egreso.esValido());
+        Assert.assertEquals(true, egreso.getEsValido());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class EgresoTest {
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoA);
 
-        Assert.assertEquals(true, egreso.esValido());
+        Assert.assertEquals(true, egreso.getEsValido());
     }
 
     @Test
@@ -70,6 +70,6 @@ public class EgresoTest {
         egreso.agregarPresupuesto(presupuestoB);
         egreso.elegirPresupuesto(presupuestoB);
 
-        Assert.assertEquals(false, egreso.esValido());
+        Assert.assertEquals(false, egreso.getEsValido());
     }
 }

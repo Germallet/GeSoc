@@ -42,7 +42,11 @@ public class Router {
         Spark.post("/categorias/:id", categoriasController::editar, engine);
         Spark.post("/categorias/:id/delete", categoriasController::borrar, engine);
 
-        Spark.get("/entidades/:idEntidad/egresos", EgresosController::mostrar, engine);
-        Spark.post("/entidades/:idEntidad/egresos/new", EgresosController::crear, engine);
+        EgresosController egresosController = new EgresosController();
+        Spark.get("/entidades/:idEntidad/egresos", egresosController::listar, engine);
+        Spark.get("/entidades/:idEntidad/egresos/new", egresosController::nuevo, engine);
+        Spark.post("/entidades/:idEntidad/egresos/new", egresosController::crear, engine);
+        Spark.get("/entidades/:idEntidad/egresos/:idEgreso", egresosController::mostrar, engine);
+        Spark.post("/entidades/:idEntidad/egresos/:idEgreso", egresosController::guardar, engine);
     }
 }

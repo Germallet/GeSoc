@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
-
 import Organizaciones.*;
 
 @Entity
@@ -61,18 +60,23 @@ public class Egreso extends IDGenerator {
             return presupuestos.stream().allMatch(presupuesto -> presupuesto.valorTotal() >= presupuestoElegido.valorTotal());
         return true;
     }
-    public boolean esValido() {
-        return presupuestoElegido != null && presupuestosSuficiente() && criterioDelMenor();
-    }
+    public boolean getEsValido() { return presupuestoElegido != null && presupuestosSuficiente() && criterioDelMenor(); }
 
     public void validar() {
-        if (esValido())
+        if (getEsValido())
             revisores.forEach(revisor ->  revisor.getBandejaDeMensajes().recibirMensaje(new Mensaje("Egreso generado")));
     }
 
-    public int valorTotal(){
-       return presupuestoElegido.valorTotal();
-    }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+    public MedioDePago getMedioDePago() { return medioDePago; }
+    public void setMedioDePago(MedioDePago medioDePago) { this.medioDePago = medioDePago; }
+    public int getPresupuestosRequeridos() { return presupuestosRequeridos; }
+    public void setPresupuestosRequeridos(int presupuestosRequeridos) { this.presupuestosRequeridos = presupuestosRequeridos; }
+    public Boolean getEscogerMenor(){ return escogerMenor; }
+    public void setEscogerMenor(boolean escogerMenor) { this.escogerMenor = escogerMenor; }
+
+    public int getValorTotal() { return presupuestoElegido.valorTotal(); }
 
     public boolean esDelUltimoMes() {
         return this.fecha.getYear() == LocalDate.now().getYear() && this.fecha.getMonth().equals(LocalDate.now().getMonth());
@@ -83,21 +87,5 @@ public class Egreso extends IDGenerator {
     }
     public boolean tieneEtiqueta(Etiqueta unaEtiqueta){
         return this.etiquetas.contains(unaEtiqueta);
-    }
-
-    public String getUrl(){
-        return "egresos/" + getId();
-    }
-
-    public int getValorTotal(){
-        return this.valorTotal();
-    }
-
-    public boolean getEsDelUltimoMes(){
-        return this.esDelUltimoMes();
-    }
-
-    public boolean getEsValido(){
-        return this.esValido();
     }
 }

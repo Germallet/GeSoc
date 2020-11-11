@@ -1,12 +1,12 @@
 {{#partial "contenido"}}
-    <h1>Crear Egreso</h1>
+    <h1>Modificar Egreso</h1>
     <h3>{{entidad.nombreFicticio}}</h3>
     <br>
-    <form action="/entidades/{{entidad.id}}/egresos/new" method="POST">
+    <form action="/entidades/{{entidad.id}}/egresos/{{egreso.id}}" method="POST">
         <div class="form-group">
             <label for="fecha">Fecha</label>
             <div>
-                <input class="form-control" type="date" value="2020-01-01" id="fecha" name="fecha">
+                <input class="form-control" type="date" value="{{egreso.fecha}}" id="fecha" name="fecha">
             </div>
         </div>
         <div class="form-group">
@@ -14,25 +14,23 @@
             <select id="medioDePago" name="medioDePago" class="form-control custom-select">
                 <option value="TarjetaCredito" {{#if tarjetaCredito}}selected{{/if}}>Tarjeta de Crédito</option>
                 <option value="TarjetaDebito" {{#if tarjetaDebito}}selected{{/if}}>Tarjeta de Débito</option>
-                <option value="Efectivo" selected>Efectivo</option>
-                <option value="CajeroAutomatico" {{#if efectivo}}selected{{/if}}>Cajero Automático</option>
+                <option value="Efectivo" {{#if efectivo}}selected{{/if}}>Efectivo</option>
+                <option value="CajeroAutomatico" {{#if cajeroAutomatico}}selected{{/if}}>Cajero Automático</option>
                 <option value="DineroEnCuenta" {{#if dineroEnCuenta}}selected{{/if}}>Dinero en Cuenta</option>
             </select>
         </div>
         <div class="form-group">
             <label>Presupuestos Requeridos</label>
             <div class="form-group">
-                <input id="presupuestosRequeridos" type="number" class="form-control" placeholder="Presupuestos Requeridos" name="presupuestosRequeridos" value="0">
+                <input id="presupuestosRequeridos" type="number" class="form-control" placeholder="Presupuestos Requeridos" name="presupuestosRequeridos" value="{{egreso.presupuestosRequeridos}}">
             </div>
         </div>
         <div class="form-check">
-            <label class="form-check-label">
-                <input id="escogerMenor" name="escogerMenor" class="form-check-input" type="checkbox" value="true">
-                Escoger presupuesto menor
-            </label>
+            <input id="escogerMenor" name="escogerMenor" class="form-check-input" type="checkbox" value="true" {{#if egreso.escogerMenor}}checked{{/if}}>
+            <label class="form-check-label" for="escogerMenor">Escoger presupuesto menor</label>
         </div>
         <br>
-        <input class="btn btn-primary btn-lg" type="submit" value="Crear">
+        <input class="btn btn-primary btn-lg" type="submit" value="Guardar">
     </form>
 {{/partial}}
 

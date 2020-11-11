@@ -1,0 +1,30 @@
+{{#partial "contenido"}}
+    <h1>Egresos</h1>
+    <h3>{{entidad.nombreFicticio}}</h3>
+    <br>
+    <table class="table table/stripped">
+        <tr>
+            <th>Fecha</th>
+            <th>Medio de Pago</th>
+            <th>Presupuestos Requeridos</th>
+            <th>Escoger Presupuesto Menor</th>
+            <th>Válido</th>
+            <th></th>
+        </tr>
+
+        {{#each egresos}}
+        <tr>
+            <td>{{fecha}}</td>
+            <td>{{medioDePago}}</td>
+            <td>{{presupuestosRequeridos}}</td>
+            <td>{{isTrue escogerMenor}}</td>
+            <td>{{isTrue esValido}}</td>
+            <td><a href="/entidades/{{entidad.id}}/egresos/{{id}}">Ver</a></td>
+        </tr>
+    {{/each}}
+    </table>
+    <br>
+    <a class="btn btn-primary" role="button" href="/entidades/{{entidad.id}}/egresos/new">Agregar Egreso</a>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -19,6 +19,6 @@ public class ComportamientoPermitirEgreso_MontoMaximo extends ComportamientoPerm
     }
 
     public boolean permiteEgreso(List<Egreso> egresos, Egreso nuevoEgreso) {
-        return egresos.stream().mapToInt(egreso -> egreso.valorTotal()).sum() + nuevoEgreso.valorTotal() <= montoMaximo;
+        return egresos.stream().mapToInt(Egreso::getValorTotal).sum() + nuevoEgreso.getValorTotal() <= montoMaximo;
     }
 }

@@ -34,6 +34,8 @@ public abstract class Entidad extends IDGenerator {
         egresos.add(nuevoEgreso);
     }
 
+    public List<Egreso> getEgresos() { return egresos; }
+
     public Categoria getCategoria() { return categoria; }
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
     public String getNombreFicticio() { return nombreFicticio; }
