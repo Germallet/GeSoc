@@ -22,7 +22,7 @@ public class Base extends Entidad {
     }
 
     public void setEntidadJuridica(Juridica entidadJuridica) {
-        if ((categoria == null || categoria.puedeSerDeJuridica()) && entidadJuridica.permiteEntidadBase())
+        if ((categoria == null || categoria.getPuedeSerDeJuridica()) && entidadJuridica.permiteEntidadBase())
             this.entidadJuridica = entidadJuridica;
     }
 

@@ -28,7 +28,7 @@ public class Juridica extends Entidad {
     }
 
     public boolean permiteEntidadBase() {
-        return categoria == null || categoria.permiteEntidadBase();
+        return categoria == null || categoria.getPermiteEntidadBase();
     }
 
     public String getTipo() { return "Jurídica"; }

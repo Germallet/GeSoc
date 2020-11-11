@@ -4,31 +4,35 @@
         <tr>
             <th>Nombre</th>
             <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         {{#each categorias}}
             <tr>
-                <td>
-                    <form method="POST" action="/categorias/{{id}}" class="my-0" style="display: flex;">
+                <form method="POST" action="/categorias/{{id}}" class="my-0" style="display: flex;">
+                    <td>
                         <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Nombre de Categoría" value="{{nombre}}">
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            <input id="permiteEntidadBase{{id}}" name="permiteEntidadBase" class="form-check-input" type="checkbox" value="true" {{#if permiteEntidadBase}}checked{{/if}}>
+                            <label class="form-check-label" for="permiteEntidadBase{{id}}">Puede ser jurídica</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            <input id="puedeSerDeJuridica{{id}}" name="puedeSerDeJuridica" class="form-check-input" type="checkbox" value="true" {{#if puedeSerDeJuridica}}checked{{/if}}>
+                            <label class="form-check-label" for="puedeSerDeJuridica{{id}}">Permite entidad base</label>
+                        </div>
+                    </td>
+                    <td>
                         <input class="btn btn-sm btn-success" type="submit" value="✓"></form>
-                    <br>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input id="permiteEntidadBase" name="permiteEntidadBase" class="form-check-input" type="checkbox" value="true">
-                            Permite entidad base
-                        </label>
-                    </div>
-                    <br>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input id="puedeSerJuridica" name="puedeSerJuridica" class="form-check-input" type="checkbox" value="true">
-                            Puede ser juridica
-                        </label>
-                    </div>
-                    <br>
-                    </form>
-                </td>
-                <td><form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-danger" type="submit" value="X"></form></td>
+                    </td>
+                    <td>
+                        <form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-danger" type="submit" value="X"></form>
+                    </td>
+                </form>
             </tr>
         {{/each}}
     </table>

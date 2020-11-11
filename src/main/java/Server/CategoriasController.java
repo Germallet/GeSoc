@@ -32,8 +32,7 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
         withTransaction(() -> {
             ComportamientoPermitirEgreso comportamientoPermitirEgreso = new ComportamientoPermitirEgreso_Permitir();
             persist(comportamientoPermitirEgreso);
-            Categoria nuevaCategoria = new Categoria("Nueva Categoría", Boolean.parseBoolean(req.params("permiteEntidadBase")),
-                                           Boolean.parseBoolean(req.params("puedeSerJuridica")), comportamientoPermitirEgreso);
+            Categoria nuevaCategoria = new Categoria("Nueva Categoría", true, true, comportamientoPermitirEgreso);
             usuario.getOrganizacion().getCategorias().add(nuevaCategoria);
             persist(nuevaCategoria);
             merge(usuario.getOrganizacion());
@@ -78,8 +77,10 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
         if (categoria.isPresent())
         {
             withTransaction(() -> {
-               categoria.get().setNombre(req.queryParams("nombre"));
-               merge(categoria.get());
+                categoria.get().setNombre(req.queryParams("nombre"));
+                categoria.get().setPermiteEntidadBase(Boolean.parseBoolean(req.queryParams("permiteEntidadBase")));
+                categoria.get().setPuedeSerDeJuridica(Boolean.parseBoolean(req.queryParams("puedeSerDeJuridica")));
+                merge(categoria.get());
             });
         }
 
