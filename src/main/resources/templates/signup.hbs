@@ -2,6 +2,7 @@
     <div class="row justify-content-center align-items-center">
         <div class="col-lg-6">
             <h2 class="mb-3">Registrarse</h2>
+            <br>
             <form method="POST" action="/signup">
                 <div class="form-group">
                     <input id="username" type="text" class="form-control" placeholder="Usuario" name="username" value="{{username}}">
@@ -15,7 +16,7 @@
                         <small class="form-text text-danger">{{passwordError}}</small>
                     {{/if}}
                 </div>
-                <input type="submit" class="btn btn-primary" value="Registrarse">
+                <input type="submit" class="btn btn-lg btn-primary" value="Registrarse">
             </form>
         </div>
     </div>
