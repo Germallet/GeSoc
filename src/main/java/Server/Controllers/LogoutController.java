@@ -1,4 +1,4 @@
-package Server;
+package Server.Controllers;
 
 import spark.*;
 

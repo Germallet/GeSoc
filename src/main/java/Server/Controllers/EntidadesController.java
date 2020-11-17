@@ -1,7 +1,8 @@
-package Server;
+package Server.Controllers;
 
 import Organizaciones.*;
 import Seguridad.*;
+import Server.ControllerConUsuario;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
