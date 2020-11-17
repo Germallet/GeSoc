@@ -20,10 +20,11 @@ public class EntidadesController implements ControllerConUsuario, WithGlobalEnti
 
         List<Entidad> entidades;
         String búsquedaCategoría = req.queryParams("categoria");
-        if (búsquedaCategoría == null || búsquedaCategoría.equals(""))
-            entidades = usuario.getOrganizacion().getEntidades();
+        Optional<Categoria> categoria = usuario.getOrganizacion().getCategorias().stream().filter(cat -> cat.getNombre().equals(búsquedaCategoría)).findAny();
+        if (categoria.isPresent())
+            entidades = usuario.getOrganizacion().getEntidades().stream().filter(entidad -> entidad.perteneceACategoria(categoria.get())).collect(Collectors.toList());
         else
-            entidades = usuario.getOrganizacion().getEntidades().stream().filter(entidad -> entidad.getCategoria() != null && entidad.getCategoria().getNombre().contains(búsquedaCategoría)).collect(Collectors.toList());
+            entidades = usuario.getOrganizacion().getEntidades();
 
         Map<String, Object> model = new HashMap<>();
         model.put("usuario", usuario);

@@ -41,4 +41,6 @@ public abstract class Entidad extends IDGenerator {
     public String getNombreFicticio() { return nombreFicticio; }
     public void setNombreFicticio(String nombreFicticio) { this.nombreFicticio = nombreFicticio; }
     public abstract String getTipo();
+
+    public Boolean perteneceACategoria(Categoria categoria) { return this.categoria == categoria; }
 }
