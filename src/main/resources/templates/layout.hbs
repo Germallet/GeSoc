@@ -12,30 +12,23 @@
             <a class="navbar-brand" href="#">GeSoc</a>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{#if inicio}}active{{/if}}">
-                    <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Inicio</a>
                 </li>
                 <li class="nav-item {{#if about}}active{{/if}}">
                     <a class="nav-link" href="/about">Nosotros</a>
                 </li>
+                {{#if usuario}}
+                    <li class="nav-item {{#if entidades}}active{{/if}}">
+                        <a class="nav-link" href="/entidades">Entidades</a>
+                    </li>
+                    <li class="nav-item {{#if categorias}}active{{/if}}">
+                        <a class="nav-link" href="/categorias">Categorías</a>
+                    </li>
+                {{/if}}
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
                 {{#if usuario}}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-brand" style="color: rgba(255,255,255,1);" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{usuario.nombre}}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/entidades">Entidades</a>
-                            <a class="dropdown-item" href="/categorias">Categorías</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
-                        </div>
-                    </li>
-                {{else}}
-                    <li class="nav-item">
-                        <a class="btn btn-sm btn-secondary" href="/login">Iniciar Sesión</a>
-                        <a class="btn btn-success" href="/signup">Registrarse!</a>
-                    </li>
+                    <form method="POST" action="/logout" class="nav-item" style="margin: 0;"><input type="submit" class="btn btn-outline-light btn-sm" href="/logout" value="Cerrar Sesión"></form>
                 {{/if}}
             </ul>
         </nav>
