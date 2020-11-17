@@ -18,10 +18,12 @@ public class Router {
         Spark.before((req, res) -> PerThreadEntityManagers.getEntityManager());
         Spark.after((req, res) -> PerThreadEntityManagers.closeEntityManager());
 
-        Spark.get("/", HomeController::show, engine);
+        HomeController homeController = new HomeController();
+        Spark.get("/", homeController::show, engine);
 
-        Spark.get("/login", LoginController::show, engine);
-        Spark.post("/login", LoginController::login, engine);
+        LoginController loginController = new LoginController();
+        Spark.get("/login", loginController::show, engine);
+        Spark.post("/login", loginController::login, engine);
 
         Spark.post("/logout", LogoutController::logout, engine);
 
@@ -29,7 +31,8 @@ public class Router {
         Spark.get("/signup", signUpController::show, engine);
         Spark.post("/signup", signUpController::signUp, engine);
 
-        Spark.get("/about", AboutController::show, engine);
+        AboutController aboutController = new AboutController();
+        Spark.get("/about", aboutController::show, engine);
 
         EntidadesController entidadesController = new EntidadesController();
         Spark.get("/entidades", entidadesController::listar, engine);

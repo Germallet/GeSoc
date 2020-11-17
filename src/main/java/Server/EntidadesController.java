@@ -9,13 +9,13 @@ import spark.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class EntidadesController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class EntidadesController implements ControllerConUsuario, WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
     public ModelAndView listar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         List<Entidad> entidades;
         String búsquedaCategoría = req.queryParams("categoria");
@@ -32,11 +32,11 @@ public class EntidadesController implements WithGlobalEntityManager, EntityManag
     }
 
     public ModelAndView mostrar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("id"))).findAny();
         if(!entidad.isPresent()) {
@@ -55,11 +55,11 @@ public class EntidadesController implements WithGlobalEntityManager, EntityManag
     }
 
     public ModelAndView guardar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
         res.redirect("/entidades");
 
         Optional<Entidad> entidadOptional = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("id"))).findAny();
@@ -73,7 +73,6 @@ public class EntidadesController implements WithGlobalEntityManager, EntityManag
                 entidad.setNombreFicticio(req.queryParams("nombreFicticio"));
                 entidad.setDescripcion(req.queryParams("descripcion"));
                 entidad.setCategoria(categoriaOptional.orElseGet(null));
-                merge(entidad);
             });
         } else {
             Juridica entidad = (Juridica)entidadOptional.get();
@@ -83,7 +82,6 @@ public class EntidadesController implements WithGlobalEntityManager, EntityManag
                 entidad.setCUIT(Integer.parseInt(req.queryParams("CUIT")));
                 entidad.setDireccionPostal(Integer.parseInt(req.queryParams("direccionPostal")));
                 entidad.setCategoria(categoriaOptional.orElseGet(null));
-                merge(entidad);
             });
         }
 

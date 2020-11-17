@@ -3,11 +3,11 @@ package Server;
 import spark.*;
 import java.util.*;
 
-public class AboutController {
-    public static ModelAndView show(Request req, Response res) {
+public class AboutController implements ControllerConUsuario {
+    public ModelAndView show(Request req, Response res) {
         Map<String, Object> model = new HashMap<>();
         model.put("about", true);
-        model.put("usuario", req.session().attribute("usuario"));
+        model.put("usuario", obtenerUsuario(req));
         return new ModelAndView(model, "about.hbs");
     }
 }

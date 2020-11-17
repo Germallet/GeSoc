@@ -8,13 +8,13 @@ import org.uqbarproject.jpa.java8.extras.transaction.*;
 import spark.*;
 import java.util.*;
 
-public class CategoriasController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class CategoriasController implements ControllerConUsuario, WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
     public ModelAndView listar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Map<String, Object> model = new HashMap<>();
         model.put("usuario", usuario);
@@ -23,11 +23,11 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
     }
 
     public ModelAndView crear(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         withTransaction(() -> {
             ComportamientoPermitirEgreso comportamientoPermitirEgreso = new ComportamientoPermitirEgreso_Permitir();
@@ -43,11 +43,11 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
     }
 
     public ModelAndView borrar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Categoria> categoria = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.toString(cat.getId()).equals(req.params("id"))).findAny();
         if (categoria.isPresent())
@@ -57,7 +57,6 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
                     entidad.setCategoria(null);
                     merge(entidad);
                 });
-                remove(merge(categoria.get()));
                 usuario.getOrganizacion().getCategorias().remove(categoria.get());
             });
         }
@@ -67,11 +66,11 @@ public class CategoriasController implements WithGlobalEntityManager, EntityMana
     }
 
     public ModelAndView editar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Categoria> categoria = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.toString(cat.getId()).equals(req.params("id"))).findAny();
         if (categoria.isPresent())

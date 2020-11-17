@@ -9,14 +9,14 @@ import java.time.LocalDate;
 import java.util.*;
 import Egresos.*;
 
-public class EgresosController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class EgresosController implements ControllerConUsuario, WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
     public ModelAndView listar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("idEntidad"))).findAny();
         if(!entidad.isPresent()) {
@@ -32,11 +32,11 @@ public class EgresosController implements WithGlobalEntityManager, EntityManager
     }
 
     public ModelAndView mostrar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("idEntidad"))).findAny();
         if(!entidad.isPresent()) {
@@ -69,11 +69,11 @@ public class EgresosController implements WithGlobalEntityManager, EntityManager
     }
 
     public ModelAndView nuevo(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("idEntidad"))).findAny();
         if(!entidad.isPresent()) {
@@ -88,11 +88,11 @@ public class EgresosController implements WithGlobalEntityManager, EntityManager
     }
 
     public ModelAndView crear(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("idEntidad"))).findAny();
         if(!entidad.isPresent()) {
@@ -111,11 +111,11 @@ public class EgresosController implements WithGlobalEntityManager, EntityManager
     }
 
     public ModelAndView guardar(Request req, Response res) {
-        Usuario usuario = req.session().attribute("usuario");
-        if (usuario == null) {
+        if (!estaLogueado(req)) {
             res.redirect("/login");
             return null;
         }
+        Usuario usuario = obtenerUsuario(req);
 
         Optional<Entidad> entidad = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("idEntidad"))).findAny();
         if(!entidad.isPresent()) {
@@ -135,7 +135,6 @@ public class EgresosController implements WithGlobalEntityManager, EntityManager
             egreso.setMedioDePago(MedioDePago.valueOf(req.queryParams("medioDePago")));
             egreso.setPresupuestosRequeridos(Integer.parseInt(req.queryParams("presupuestosRequeridos")));
             egreso.setEscogerMenor(Boolean.parseBoolean(req.queryParams("escogerMenor")));
-            merge(egreso);
         });
         res.redirect("/entidades/" + entidad.get().getId() + "/egresos");
         return null;

@@ -5,9 +5,9 @@ import Seguridad.Usuario;
 import spark.*;
 import java.util.*;
 
-public class LoginController {
-    public static ModelAndView show(Request req, Response res) {
-        if (req.session().attribute("usuario") == null)
+public class LoginController implements ControllerConUsuario {
+    public ModelAndView show(Request req, Response res) {
+        if (!estaLogueado(req))
             return new ModelAndView(null, "logIn.hbs");
         else {
             res.redirect("/");
@@ -15,14 +15,14 @@ public class LoginController {
         }
     }
 
-    public static ModelAndView login(Request req, Response res) {
+    public ModelAndView login(Request req, Response res) {
         String username = req.queryParams("username");
         String password = req.queryParams("password");
 
         Optional<Usuario> usuario = RepoUsuarios.repositorio().obtenerUsuarios().stream().filter(u -> u.validarLogin(username, password)).findAny();
         if (usuario.isPresent())
         {
-            req.session().attribute("usuario", usuario.get());
+            req.session().attribute("usuario", usuario.get().getId());
             res.redirect("/");
         }
         else
