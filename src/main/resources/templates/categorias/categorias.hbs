@@ -26,13 +26,13 @@
                             <label class="form-check-label" for="puedeSerDeJuridica{{id}}">Permite entidad base</label>
                         </div>
                     </td>
-                    <td>
-                        <input class="btn btn-sm btn-outline-success" type="submit" value="✓"></form>
-                    </td>
-                    <td>
-                        <form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-outline-danger" type="submit" value="X"></form>
+                    <td align="right" style="padding-right: 0;">
+                        <input class="btn btn-sm btn-outline-success" type="submit" value="Guardar">
                     </td>
                 </form>
+                <td>
+                    <form method="POST" action="/categorias/{{id}}/delete" class="my-0"><input class="btn btn-sm btn-outline-danger" type="submit" value="Borrar"></form>
+                </td>
             </tr>
         {{/each}}
     </table>
