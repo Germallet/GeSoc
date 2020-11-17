@@ -1,8 +1,10 @@
 {{#partial "contenido"}}
     <h1>{{entidad.nombreFicticio}}</h1>
     <h3>Entidad {{entidad.tipo}}</h3>
+    <div class="form-group">
+        <a class="btn btn-primary" role="button" href="/entidades/{{entidad.id}}/egresos">Egresos</a>
+    </div>
     <br>
-
     <form method="POST" action="/entidades/{{entidad.id}}">
         <div class="form-group">
             <label>Nombre</label>
@@ -38,10 +40,14 @@
             </select>
         </div>
         <br>
-        <div class="form-group">
-            <a class="btn btn-primary" role="button" href="/entidades/{{entidad.id}}/egresos">Ver egresos</a>
+        <div class="d-flex">
+            <div class="mr-auto">
+                <a class="btn btn-danger" href="/entidades">Cancelar</a>
+            </div>
+            <div class="ml-auto">
+                <input type="submit" class="btn btn-success btn-lg" value="Guardar">
+            </div>
         </div>
-        <input type="submit" class="btn btn-success" value="Guardar cambios">
     </form>
 {{/partial}}
 
