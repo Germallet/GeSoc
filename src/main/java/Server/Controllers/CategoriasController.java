@@ -59,6 +59,7 @@ public class CategoriasController implements ControllerConUsuario, WithGlobalEnt
                     merge(entidad);
                 });
                 usuario.getOrganizacion().getCategorias().remove(categoria.get());
+                remove(categoria.get());
             });
         }
 
@@ -80,7 +81,6 @@ public class CategoriasController implements ControllerConUsuario, WithGlobalEnt
                 categoria.get().setNombre(req.queryParams("nombre"));
                 categoria.get().setPermiteEntidadBase(Boolean.parseBoolean(req.queryParams("permiteEntidadBase")));
                 categoria.get().setPuedeSerDeJuridica(Boolean.parseBoolean(req.queryParams("puedeSerDeJuridica")));
-                merge(categoria.get());
             });
         }
 
