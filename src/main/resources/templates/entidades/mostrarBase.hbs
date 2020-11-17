@@ -15,7 +15,7 @@
         <div class="form-group">
             <label>Categoría</label>
             <select id="categoria" name="categoria" class="form-control custom-select">
-                <option selected>Ninguna</option>
+                <option value="-1" selected>Ninguna</option>
                 {{#each usuario.organizacion.categorias}}
                     <option value="{{id}}">{{nombre}}</option>
                 {{/each}}

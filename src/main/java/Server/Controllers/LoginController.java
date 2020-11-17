@@ -7,8 +7,8 @@ import spark.*;
 import java.util.*;
 
 public class LoginController implements ControllerConUsuario {
-    public ModelAndView show(Request req, Response res) {
-        if (!estaLogueado(req))
+    public static ModelAndView show(Request req, Response res) {
+        if (!ControllerConUsuario.estaLogueado(req))
             return new ModelAndView(null, "logIn.hbs");
         else {
             res.redirect("/");
@@ -16,18 +16,15 @@ public class LoginController implements ControllerConUsuario {
         }
     }
 
-    public ModelAndView login(Request req, Response res) {
+    public static ModelAndView login(Request req, Response res) {
         String username = req.queryParams("username");
         String password = req.queryParams("password");
 
         Optional<Usuario> usuario = RepoUsuarios.repositorio().obtenerUsuarios().stream().filter(u -> u.validarLogin(username, password)).findAny();
-        if (usuario.isPresent())
-        {
+        if (usuario.isPresent()) {
             req.session().attribute("usuario", usuario.get().getId());
             res.redirect("/");
-        }
-        else
-        {
+        } else {
             Map<String, Object> model = new HashMap<>();
             model.put("username", username);
             model.put("loginError", true);

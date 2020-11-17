@@ -2,33 +2,27 @@ package Server.Controllers;
 
 import Organizaciones.*;
 import Seguridad.Usuario;
-import Server.ControllerConUsuario;
+import Server.*;
 import org.uqbarproject.jpa.java8.extras.*;
 import org.uqbarproject.jpa.java8.extras.transaction.*;
 import spark.*;
 import java.util.Optional;
 
-public class EntidadBaseController implements ControllerConUsuario, WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
-    public ModelAndView guardar(Request req, Response res) {
-        if (!estaLogueado(req)) {
-            res.redirect("/login");
-            return null;
-        }
-        Usuario usuario = obtenerUsuario(req);
-        res.redirect("/entidades");
-
-        Optional<Entidad> entidadOptional = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("id"))).findAny();
+public class EntidadBaseController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+    public ModelAndView guardar(Request req, Response res, Usuario usuario) {
+        Optional<Entidad> entidadOptional = usuario.getEntidadConId(req.params("idEntidad"));
         if(!entidadOptional.isPresent())
             return null;
-        Optional<Categoria> categoriaOptional = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.toString(cat.getId()).equals(req.queryParams("categoria"))).findAny();
+        Optional<Categoria> categoriaOptional = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.parseLong(req.queryParams("categoria")) == cat.getId()).findAny();
 
         Base entidad = (Base)entidadOptional.get();
         withTransaction(() -> {
             entidad.setNombreFicticio(req.queryParams("nombreFicticio"));
             entidad.setDescripcion(req.queryParams("descripcion"));
-            entidad.setCategoria(categoriaOptional.orElseGet(null));
+            entidad.setCategoria(categoriaOptional.orElse(null));
         });
 
+        res.redirect("/entidades");
         return null;
     }
 }

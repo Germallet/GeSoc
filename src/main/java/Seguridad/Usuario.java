@@ -1,9 +1,10 @@
 package Seguridad;
 
 import Main.IDGenerator;
-import Organizaciones.Organizacion;
+import Organizaciones.*;
 import com.google.common.base.Preconditions;
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 public class Usuario extends IDGenerator {
@@ -41,4 +42,19 @@ public class Usuario extends IDGenerator {
     public Organizacion getOrganizacion() { return organizacion; }
 
     public BandejaDeMensajes getBandejaDeMensajes() { return bandejaDeMensajes; }
+
+    public Optional<Entidad> getEntidadConId(String id) {
+        try {
+            return getOrganizacion().getEntidades().stream().filter(e -> Long.parseLong(id) == e.getId()).findAny();
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+    public Optional<Categoria> getCategoriaConId(String id) {
+        try {
+            return getOrganizacion().getCategorias().stream().filter(c -> Long.parseLong(id) == c.getId()).findAny();
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
 }

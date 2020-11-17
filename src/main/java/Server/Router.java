@@ -1,12 +1,13 @@
 package Server;
 
+import Seguridad.Usuario;
 import Server.Controllers.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import spark.Spark;
-import spark.template.handlebars.HandlebarsTemplateEngine;
+import spark.*;
+import spark.template.handlebars.*;
 import Server.utils.*;
 
-public class Router {
+public class Router implements ControllerConUsuario {
     public static void configure() {
         HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
                 .create()
@@ -19,12 +20,10 @@ public class Router {
         Spark.before((req, res) -> PerThreadEntityManagers.getEntityManager());
         Spark.after((req, res) -> PerThreadEntityManagers.closeEntityManager());
 
-        HomeController homeController = new HomeController();
-        Spark.get("/", homeController::show, engine);
+        Spark.get("/", HomeController::show, engine);
 
-        LoginController loginController = new LoginController();
-        Spark.get("/login", loginController::show, engine);
-        Spark.post("/login", loginController::login, engine);
+        Spark.get("/login", LoginController::show, engine);
+        Spark.post("/login", LoginController::login, engine);
 
         Spark.post("/logout", LogoutController::logout, engine);
 
@@ -32,28 +31,45 @@ public class Router {
         Spark.get("/signup", signUpController::show, engine);
         Spark.post("/signup", signUpController::signUp, engine);
 
-        AboutController aboutController = new AboutController();
-        Spark.get("/about", aboutController::show, engine);
+        Spark.get("/about", AboutController::show, engine);
 
         EntidadesController entidadesController = new EntidadesController();
         EntidadBaseController entidadBaseController = new EntidadBaseController();
         EntidadJuridicaController entidadJuridicaController = new EntidadJuridicaController();
-        Spark.get("/entidades", entidadesController::listar, engine);
-        Spark.get("/entidades/:id", entidadesController::mostrar, engine);
-        Spark.post("/entidades/:id/base", entidadBaseController::guardar, engine);
-        Spark.post("/entidades/:id/juridica", entidadJuridicaController::guardar, engine);
+        get_LoginRequerido("/entidades", entidadesController::listar, engine);
+        get_LoginRequerido("/entidades/:idEntidad", entidadesController::mostrar, engine);
+        post_LoginRequerido("/entidades/:idEntidad/base", entidadBaseController::guardar, engine);
+        post_LoginRequerido("/entidades/:idEntidad/juridica", entidadJuridicaController::guardar, engine);
 
         CategoriasController categoriasController = new CategoriasController();
-        Spark.get("/categorias", categoriasController::listar, engine);
-        Spark.post("/categorias/new", categoriasController::crear, engine);
-        Spark.post("/categorias/:id", categoriasController::editar, engine);
-        Spark.post("/categorias/:id/delete", categoriasController::borrar, engine);
+        get_LoginRequerido("/categorias", categoriasController::listar, engine);
+        post_LoginRequerido("/categorias/new", categoriasController::crear, engine);
+        post_LoginRequerido("/categorias/:id", categoriasController::editar, engine);
+        post_LoginRequerido("/categorias/:id/delete", categoriasController::borrar, engine);
 
         EgresosController egresosController = new EgresosController();
-        Spark.get("/entidades/:idEntidad/egresos", egresosController::listar, engine);
-        Spark.get("/entidades/:idEntidad/egresos/new", egresosController::nuevo, engine);
-        Spark.post("/entidades/:idEntidad/egresos/new", egresosController::crear, engine);
-        Spark.get("/entidades/:idEntidad/egresos/:idEgreso", egresosController::mostrar, engine);
-        Spark.post("/entidades/:idEntidad/egresos/:idEgreso", egresosController::guardar, engine);
+        get_LoginRequerido("/entidades/:idEntidad/egresos", egresosController.ToViewRoute(egresosController::listar), engine);
+        get_LoginRequerido("/entidades/:idEntidad/egresos/new", egresosController.ToViewRoute(egresosController::nuevo), engine);
+        post_LoginRequerido("/entidades/:idEntidad/egresos/new", egresosController.ToViewRoute(egresosController::crear), engine);
+        get_LoginRequerido("/entidades/:idEntidad/egresos/:idEgreso", egresosController.ToViewRoute(egresosController::mostrar), engine);
+        post_LoginRequerido("/entidades/:idEntidad/egresos/:idEgreso", egresosController.ToViewRoute(egresosController::guardar), engine);
+    }
+
+    private static void get_LoginRequerido(String path, TemplateViewRoute_Usuario route, TemplateEngine engine) {
+        Spark.get(path, loginRequerido(route), engine);
+    }
+    private static void post_LoginRequerido(String path, TemplateViewRoute_Usuario route, TemplateEngine engine) {
+        Spark.post(path, loginRequerido(route), engine);
+    }
+
+    private static TemplateViewRoute loginRequerido(TemplateViewRoute_Usuario route) {
+        return (Request req, Response res) -> {
+            Usuario usuario = ControllerConUsuario.obtenerUsuario(req);
+            if (usuario == null) {
+                res.redirect("/login");
+                return null;
+            } else
+                return route.handle(req, res, usuario);
+        };
     }
 }
