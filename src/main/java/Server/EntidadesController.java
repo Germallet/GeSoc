@@ -48,43 +48,6 @@ public class EntidadesController implements ControllerConUsuario, WithGlobalEnti
         model.put("usuario", usuario);
         model.put("entidad", entidad.get());
 
-        if (entidad.get() instanceof Base)
-            return new ModelAndView(model, "entidades/mostrarBase.hbs");
-        else
-            return new ModelAndView(model, "entidades/mostrarJuridica.hbs");
-    }
-
-    public ModelAndView guardar(Request req, Response res) {
-        if (!estaLogueado(req)) {
-            res.redirect("/login");
-            return null;
-        }
-        Usuario usuario = obtenerUsuario(req);
-        res.redirect("/entidades");
-
-        Optional<Entidad> entidadOptional = usuario.getOrganizacion().getEntidades().stream().filter(e -> Long.toString(e.getId()).equals(req.params("id"))).findAny();
-        if(!entidadOptional.isPresent())
-            return null;
-        Optional<Categoria> categoriaOptional = usuario.getOrganizacion().getCategorias().stream().filter(cat -> Long.toString(cat.getId()).equals(req.queryParams("categoria"))).findAny();
-
-        if(entidadOptional.get() instanceof Base) {
-            Base entidad = (Base)entidadOptional.get();
-            withTransaction(() -> {
-                entidad.setNombreFicticio(req.queryParams("nombreFicticio"));
-                entidad.setDescripcion(req.queryParams("descripcion"));
-                entidad.setCategoria(categoriaOptional.orElseGet(null));
-            });
-        } else {
-            Juridica entidad = (Juridica)entidadOptional.get();
-            withTransaction(() -> {
-                entidad.setNombreFicticio(req.queryParams("nombreFicticio"));
-                entidad.setRazonSocial(req.queryParams("razonSocial"));
-                entidad.setCUIT(Integer.parseInt(req.queryParams("CUIT")));
-                entidad.setDireccionPostal(Integer.parseInt(req.queryParams("direccionPostal")));
-                entidad.setCategoria(categoriaOptional.orElseGet(null));
-            });
-        }
-
-        return null;
+        return new ModelAndView(model, "entidades/mostrar" + entidad.get().getClass().getSimpleName() + ".hbs");
     }
 }

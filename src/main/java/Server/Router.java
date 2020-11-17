@@ -35,9 +35,12 @@ public class Router {
         Spark.get("/about", aboutController::show, engine);
 
         EntidadesController entidadesController = new EntidadesController();
+        EntidadBaseController entidadBaseController = new EntidadBaseController();
+        EntidadJuridicaController entidadJuridicaController = new EntidadJuridicaController();
         Spark.get("/entidades", entidadesController::listar, engine);
         Spark.get("/entidades/:id", entidadesController::mostrar, engine);
-        Spark.post("/entidades/:id", entidadesController::guardar, engine);
+        Spark.post("/entidades/:id/base", entidadBaseController::guardar, engine);
+        Spark.post("/entidades/:id/juridica", entidadJuridicaController::guardar, engine);
 
         CategoriasController categoriasController = new CategoriasController();
         Spark.get("/categorias", categoriasController::listar, engine);
