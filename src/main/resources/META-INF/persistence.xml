@@ -36,9 +36,7 @@
         <properties>
 	        <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-54-147-126-202.compute-1.amazonaws.com:5432/d6ibu1h3q7mhvi" />
-            <property name="hibernate.connection.username" value="jrmxlwmldesyqt" />
-            <property name="hibernate.connection.password" value="d3c1baf14f7b6efbc7ba153f9cb1e44037451a096bdbc6947498b21e39b38f32" />
+            <property name="hibernate.connection.url" value="url" />
             <property name="hibernate.enable_lazy_load_no_trans" value="true" />
 
             <property name="hibernate.show_sql" value="true" /> 
