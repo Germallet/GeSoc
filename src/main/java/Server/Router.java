@@ -2,10 +2,10 @@ package Server;
 
 import Seguridad.Usuario;
 import Server.Controllers.*;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.*;
 import spark.template.handlebars.*;
 import Server.utils.*;
+import Persistence.PerThreadEntityManagersEnv;
 
 public class Router implements ControllerConUsuario {
     public static void configure() {
@@ -17,8 +17,8 @@ public class Router implements ControllerConUsuario {
 
         Spark.staticFiles.location("/public");
 
-        Spark.before((req, res) -> PerThreadEntityManagers.getEntityManager());
-        Spark.after((req, res) -> PerThreadEntityManagers.closeEntityManager());
+        Spark.before((req, res) -> PerThreadEntityManagersEnv.getEntityManager());
+        Spark.after((req, res) -> PerThreadEntityManagersEnv.closeEntityManager());
 
         Spark.get("/", HomeController::show, engine);
 
