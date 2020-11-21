@@ -3,9 +3,9 @@ package Main;
 import java.util.List;
 import Localizacion.*;
 import javax.persistence.*;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import Persistence.PerThreadEntityManagersEnv;
 
-public class ImportadorLocalizacion extends PerThreadEntityManagers {
+public class ImportadorLocalizacion extends PerThreadEntityManagersEnv {
     public static void main(String[] args) {
         System.out.println("Importando localización de Mercado Libre");
 

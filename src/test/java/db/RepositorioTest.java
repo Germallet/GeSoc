@@ -2,12 +2,12 @@ package db;
 
 import Main.RepoOrganizaciones;
 import Organizaciones.*;
+import Persistence.WithGlobalEntityManagerEnv;
 import org.junit.*;
 import java.util.*;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-public class RepositorioTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class RepositorioTest extends AbstractPersistenceTest implements WithGlobalEntityManagerEnv {
 
     @Test
     public void agregoUnaOrganzacion() {

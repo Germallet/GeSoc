@@ -1,6 +1,7 @@
 package Server.Controllers;
 
 import Main.RepoUsuarios;
+import Persistence.WithGlobalEntityManagerEnv;
 import Seguridad.Contrasenia;
 import Seguridad.TipoDeUsuario;
 import Seguridad.Usuario;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUpController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class SignUpController implements WithGlobalEntityManagerEnv, EntityManagerOps, TransactionalOps {
     public ModelAndView show(Request req, Response res) {
         return new ModelAndView(null, "signup.hbs");
     }

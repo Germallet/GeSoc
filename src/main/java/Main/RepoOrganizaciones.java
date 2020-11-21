@@ -1,10 +1,10 @@
 package Main;
 
 import Organizaciones.Organizacion;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import Persistence.WithGlobalEntityManagerEnv;
 import java.util.List;
 
-public class RepoOrganizaciones implements WithGlobalEntityManager {
+public class RepoOrganizaciones implements WithGlobalEntityManagerEnv {
 
     private static RepoOrganizaciones instancia = null;
 

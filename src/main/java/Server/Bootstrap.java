@@ -4,6 +4,7 @@ package Server;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Persistence.WithGlobalEntityManagerEnv;
 import org.apache.commons.lang3.ObjectUtils;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 import Egresos.*;
 
 
-public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
+public class Bootstrap implements WithGlobalEntityManagerEnv, EntityManagerOps, TransactionalOps{
 
     public static void main(String[] args) {
         new Bootstrap().init();

@@ -1,6 +1,7 @@
 package Server.Controllers;
 
 import Organizaciones.*;
+import Persistence.WithGlobalEntityManagerEnv;
 import Seguridad.Usuario;
 import org.uqbarproject.jpa.java8.extras.*;
 import org.uqbarproject.jpa.java8.extras.transaction.*;
@@ -8,7 +9,7 @@ import spark.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class EntidadesController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class EntidadesController implements WithGlobalEntityManagerEnv, EntityManagerOps, TransactionalOps {
     public ModelAndView listar(Request req, Response res, Usuario usuario) {
         Optional<Categoria> categoria = usuario.getCategoriaConId(req.queryParams("categoria"));
         List<Entidad> entidades = categoria.isPresent() ?

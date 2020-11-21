@@ -1,11 +1,11 @@
 package Main;
 
 import Organizaciones.*;
+import Persistence.WithGlobalEntityManagerEnv;
 import Seguridad.Usuario;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.List;
 
-public class RepoUsuarios implements WithGlobalEntityManager {
+public class RepoUsuarios implements WithGlobalEntityManagerEnv {
 
     private static RepoUsuarios instancia = null;
 

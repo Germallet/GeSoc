@@ -2,13 +2,14 @@ package Server.Controllers;
 
 import Organizaciones.Categoria;
 import Organizaciones.ComportamientoPermitirEgreso.*;
+import Persistence.WithGlobalEntityManagerEnv;
 import Seguridad.*;
 import org.uqbarproject.jpa.java8.extras.*;
 import org.uqbarproject.jpa.java8.extras.transaction.*;
 import spark.*;
 import java.util.*;
 
-public class CategoriasController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class CategoriasController implements WithGlobalEntityManagerEnv, EntityManagerOps, TransactionalOps {
     public ModelAndView listar(Request req, Response res, Usuario usuario) {
         Map<String, Object> model = new HashMap<>();
         model.put("usuario", usuario);

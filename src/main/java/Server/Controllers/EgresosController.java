@@ -1,6 +1,7 @@
 package Server.Controllers;
 
 import Organizaciones.Entidad;
+import Persistence.WithGlobalEntityManagerEnv;
 import Seguridad.Usuario;
 import Server.TemplateViewRoute_Usuario;
 import org.uqbarproject.jpa.java8.extras.*;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 import Egresos.*;
 
-public class EgresosController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
+public class EgresosController implements WithGlobalEntityManagerEnv, EntityManagerOps, TransactionalOps {
 
     public interface TemplateViewRoute_UsuarioEntidad {
         ModelAndView handle(Request var1, Response var2, Usuario usuario, Entidad entidad) throws Exception;
