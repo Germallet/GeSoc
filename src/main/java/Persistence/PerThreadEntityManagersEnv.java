@@ -3,6 +3,8 @@ package Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,10 +34,19 @@ public class PerThreadEntityManagersEnv {
     private static Map<String, Object> getOverrides() {
         Map<String, Object> configOverrides = new HashMap<>();
         if (System.getenv("DATABASE_URL") != null)
-            configOverrides.put("hibernate.connection.url", "jdbc:" + System.getenv("DATABASE_URL"));
-        System.out.println("------------------------------------------->");
-        System.out.println(System.getenv("DATABASE_URL"));
-        System.out.println("-------------------------------------------");
+        {
+            try {
+                URI dbUri = new URI(System.getenv("DATABASE_URL"));
+                String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+                String username = dbUri.getUserInfo().split(":")[0];
+                String password = dbUri.getUserInfo().split(":")[1];
+
+                configOverrides.put("hibernate.connection.url", dbUrl);
+                configOverrides.put("hibernate.connection.username", username);
+                configOverrides.put("hibernate.connection.password", password);
+            } catch (URISyntaxException e) {
+            }
+        }
         return configOverrides;
     }
 
