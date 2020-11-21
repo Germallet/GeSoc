@@ -15,7 +15,7 @@ public class Router implements ControllerConUsuario {
                 .withHelper("isTrue", BooleanHelper.isTrue)
                 .build();
 
-        //Spark.staticFiles.location("/public");
+        Spark.staticFiles.location("/public");
 
         Spark.before((req, res) -> PerThreadEntityManagers.getEntityManager());
         Spark.after((req, res) -> PerThreadEntityManagers.closeEntityManager());
