@@ -32,7 +32,7 @@ public class PerThreadEntityManagersEnv {
     private static Map<String, Object> getOverrides() {
         Map<String, Object> configOverrides = new HashMap<>();
         if (System.getenv("DATABASE_URL") != null)
-            configOverrides.put("hibernate.connection.url", System.getenv("DATABASE_URL"));
+            configOverrides.put("hibernate.connection.url", "jdbc:" + System.getenv("DATABASE_URL"));
         System.out.println("------------------------------------------->");
         System.out.println(System.getenv("DATABASE_URL"));
         System.out.println("-------------------------------------------");
