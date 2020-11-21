@@ -9,7 +9,7 @@ import java.util.*;
 public class LoginController implements ControllerConUsuario {
     public static ModelAndView show(Request req, Response res) {
         if (!ControllerConUsuario.estaLogueado(req))
-            return new ModelAndView(null, "logIn.hbs");
+            return new ModelAndView(null, "login.hbs");
         else {
             res.redirect("/");
             return null;
